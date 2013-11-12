@@ -1,0 +1,15 @@
+.ui-autocomplete-loading {
+    background: white url('../images/loading_circle.gif') right center no-repeat;
+}
+
+div.headerInfo {
+    font-size: 1.0em;
+    border-radius:15px;
+    border:2px solid #a1a1a1;
+    padding:10px 10px;
+    background:#dddddd;
+}
+
+div.ui-widget {
+    padding:10px 10px;
+}
