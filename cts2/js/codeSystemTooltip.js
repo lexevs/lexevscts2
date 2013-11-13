@@ -7,7 +7,6 @@
  */
 $(document).ready(function(){
     var url = "http://bmidev4:5555/cts2/codesystemversions?matchvalue=${codeSystemName}&filtercomponent=resourceName&format=json&callback=?";
-    console.log(url);
     var csID =  $("#tooltip").attr("data-cts");
     console.log(csID);
     $.getJSON(url.replace("${codeSystemName}", csID), function(cts2JSON) {

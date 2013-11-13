@@ -15,6 +15,7 @@
     <link href="cts2/css/typeahead.js-bootstrap.css" rel="stylesheet" >
     <!-- Custom styles for this template -->
     <link href="bootstrap3/css/jumbotron.css" rel="stylesheet">
+    <link href="cts2/css/cts2.css" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -74,9 +75,14 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <div class="well">
+                <h2>Maps</h2>
+                <p>Tooltip</p>
+                <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="SNOMEDCT_2010_01_31_TO_ICD9CM_2010-20100131">SNOMEDCT_2010_01_31_TO_ICD9CM_2010-20100131</a>
+                <div style="padding-top: 75px">
+                    <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <h2>Heading</h2>
@@ -116,5 +122,6 @@
 <script src="bootstrap3/js/bootstrap.min.js"></script>
 <script src="cts2/js/typeahead.js"></script>
 <script src="cts2/js/mapTypeahead.js"></script>
+<script src="cts2/js/mapTooltip.js"></script>
 </body>
 </html>
