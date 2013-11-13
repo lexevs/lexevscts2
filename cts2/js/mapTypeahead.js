@@ -9,12 +9,13 @@ $('.example-maps .typeahead').typeahead({
     name: 'maps',
     valueKey: 'formalName',
     remote: {
-        url : 'http://bmidev4:5555/cts2/mapversions?matchvalue=%QUERY&filtercomponent=resourceSynopsis&format=json&callback=?',
+        url : 'http://bmidev4:5555/cts2/mapversions?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
         filter: function (data) {
-            console.log(data);
-            console.log(data.mapVersionDirectory.entryList);
+//            console.log(data);
+//            console.log(data.mapVersionDirectory.entryList);
             var maps =  data.mapVersionDirectory.entryList;
-            return maps;
+            console.log(maps);
+            return maps
         }
     },
     limit: 3
