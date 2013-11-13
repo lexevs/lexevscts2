@@ -1,0 +1,17 @@
+.tooltip-inner {
+    max-width: 200px;
+    padding: 3px 8px;
+    color: darkslateblue;
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.tooltip.top .tooltip-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-top-color: whitesmoke;
+    border-width: 5px 5px 0;
+}
