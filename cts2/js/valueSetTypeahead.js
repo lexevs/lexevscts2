@@ -9,14 +9,19 @@
 //$(document).ready(function() {
     $('.example-valuesets .typeahead').typeahead({
         name: 'valuesets',
-        valueKey: 'valueSetName',
+        valueKey: 'content',
         remote: {
-            url : 'http://informatics.mayo.edu/cts2/rest/valuesets?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
+            url : 'http://bmidev4:5555/cts2/resolvedvaluesets?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
             filter: function (data) {
-                console.log(data);
-                console.log(data.valueSetCatalogEntryDirectory.entryList);
-                var valueSets =  data.valueSetCatalogEntryDirectory.entryList;
-                return valueSets;
+                var values = []
+//                console.log(data);
+//                console.log(data.resolvedValueSetDirectory.entryList);
+                var valueSets =  data.resolvedValueSetDirectory.entryList;
+                for(i in valueSets){
+                             var entry = data.resolvedValueSetDirectory.entryList[i].resolvedHeader.resolutionOf.valueSet.content;
+                             values.push(entry)
+                }
+                return values;
             }
         },
         limit: 3

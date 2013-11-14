@@ -5,19 +5,19 @@
  * Time: 3:21 PM
  * To change this template use File | Settings | File Templates.
  */
-var CodeSystemListConfig = {
+var ValueSetListConfig = {
     serviceUrl: "http://bmidev4:5555/cts2/resolvedvaluesets?format=json"
 };
 
 $(document).ready(
     function() {
-        var url = CodeSystemListConfig.serviceUrl;
-        $.getJSON(url + "&callback=?", function (data) {
-            console.log(url);
-            for (var i in data.resolvedValueSetDirectory.entryList) {
-                var entry = data.resolvedValueSetDirectory.entryList[i];
+        var vsurl = ValueSetListConfig.serviceUrl;
+        $.getJSON(vsurl + "&callback=?", function (vsdata) {
+//            console.log(vsurl);
+            for (var i in vsdata.resolvedValueSetDirectory.entryList) {
+                var entry = vsdata.resolvedValueSetDirectory.entryList[i];
                 var name = entry.resolvedHeader.resolutionOf.valueSet.content;
-                $("ul.dropdown-menu").append("<li><a href=\"#\">" + name + "</a></li>");
+                $("ul.dropdown-menu#valuesets").append("<li><a href=\"#\">" + name + "</a></li>");
             }
         });
     });

@@ -9,9 +9,9 @@
 $(document).ready(function(){
     var url = "http://bmidev4:5555/cts2/resolvedvaluesets?matchvalue=${valueSetName}&filtercomponent=resourceName&format=json&callback=?";
     var vsID =  $("#tooltip").attr("data-cts");
-    console.log(vsID);
+//    console.log(vsID);
     $.getJSON(url.replace("${valueSetName}", vsID), function(cts2JSON) {
-        console.log(url);
+//        console.log(url);
         var html = getCodeSystemTableInfo(cts2JSON);
         $('#tooltip').tooltip({title: html, html: true });
     });
@@ -19,10 +19,10 @@ $(document).ready(function(){
     function getCodeSystemTableInfo(valueSetJson) {
         // get the descripiton, current version, and code system name
         var entryList = valueSetJson.resolvedValueSetDirectory.entryList;
-        console.log(entryList);
+//        console.log(entryList);
         for(i in entryList){
             var entry =     valueSetJson.resolvedValueSetDirectory.entryList[i];
-            console.log(entry);
+//            console.log(entry);
             var valueSetName =  entry.resolvedHeader.resolutionOf.valueSet.content;
             var URI = entry.resolvedValueSetURI;
             var description = entry.resolvedHeader.resolutionOf.valueSetDefinition.content;
