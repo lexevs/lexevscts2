@@ -9,9 +9,9 @@
 $(document).ready(function(){
     var url = "http://bmidev4:5555/cts2/mapversions?matchvalue=${mapName}&filtercomponent=resourceName&format=json&callback=?";
     var mID =  $("#tooltip").attr("data-cts");
-    console.log(mID);
+//    console.log(mID);
     $.getJSON(url.replace("${mapName}", mID), function(cts2JSON) {
-        console.log(url);
+//        console.log(url);
         var html = getMapTableInfo(cts2JSON);
         $('#tooltip').tooltip({title: html, html: true });
     });
@@ -19,10 +19,10 @@ $(document).ready(function(){
     function getMapTableInfo(mapJson) {
         // get the descripiton, current version, and code system name
         var entryList = mapJson.mapVersionDirectory.entryList;
-        console.log(entryList);
+//        console.log(entryList);
         for(i in entryList){
             var entry =     mapJson.mapVersionDirectory.entryList[i];
-            console.log(entry);
+//            console.log(entry);
             var mapName =  entry.formalName;
             var version = entry.mapVersionName;
             var URI = entry.documentURI;

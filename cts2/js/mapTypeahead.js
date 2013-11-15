@@ -11,10 +11,7 @@ $('.example-maps .typeahead').typeahead({
     remote: {
         url : 'http://bmidev4:5555/cts2/mapversions?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
         filter: function (data) {
-//            console.log(data);
-//            console.log(data.mapVersionDirectory.entryList);
             var maps =  data.mapVersionDirectory.entryList;
-            console.log(maps);
             return maps
         }
     },

@@ -13,11 +13,11 @@ $(document).ready(
     function() {
         var url = CodeSystemListConfig.serviceUrl;
         $.getJSON(url + "&callback=?", function (data) {
-            console.log(url);
+//            console.log(url);
             for (var i in data.mapVersionDirectory.entryList) {
                 var entry = data.mapVersionDirectory.entryList[i];
                 var name = entry.formalName;
-                console.log(name);
+//                console.log(name);
                 $("ul.dropdown-menu").append("<li><a href=\"#\">" + name + "</a></li>");
             }
         });
