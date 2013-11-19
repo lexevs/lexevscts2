@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+    <!--<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">-->
 
     <title>CTS2 Code Systems</title>
 
@@ -17,6 +17,7 @@
     <link href="bootstrap3/css/jumbotron.css" rel="stylesheet">
     <link href="cts2/css/typeahead.js-bootstrap.css" rel="stylesheet" >
     <link href="cts2/css/cts2.css" rel="stylesheet">
+    <link href="cts2/css/tree.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -75,7 +76,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="well">
+            <div class="well tree">
             <h2>Code Systems</h2>
             <p>Tooltip</p>
             <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="NCI_Thesaurus-10.07e">NCI Thesaurus</a>
@@ -86,16 +87,14 @@
         </div>
         <div class="col-md-4">
             <div class="well">
-                <h2>Code Systems</h2>
-                <p>dropdown list</p>
-            <div class="btn-group">
-                <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i>All Code Systems</a>
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Edit</a></li>
-                    <li class="divider"></li>
+                <h2>Tree</h2>
+                <div id="tree-replace">
+                <ul class="nav"><li>
+                    <label id="cts-tree-label" label-default="root node" class="tree-toggle nav-header"></label>
+                    <ul class="nav tree"id="cts-tree"></ul>
+                    </li>
                 </ul>
-            </div>
+                </div>
                 <div style="padding-top: 75px">
                     <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
                 </div>
@@ -118,14 +117,23 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <div class="well">
+                <h2>Code Systems</h2>
+                <p>dropdown list</p>
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i>All Code Systems</a>
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Edit</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </div>
+                <div style="padding-top: 75px">
+                    <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
     </div>
     <hr>
@@ -134,7 +142,6 @@
         <p>&copy; Company 2013</p>
     </footer>
 </div> <!-- /container -->
-
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -146,5 +153,6 @@
 <script src="cts2/js/codeSystemTooltip.js"></script>
 <script src="cts2/js/codeSystemDropDown.js"></script>
 <script src="cts2/js/entityTypeAhead.js"></script>
+<script src="cts2/js/enityTree.js"></script>
 </body>
 </html>

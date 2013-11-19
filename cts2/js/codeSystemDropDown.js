@@ -6,7 +6,6 @@ var CodeSystemListConfig = {
         function() {
             var url = CodeSystemListConfig.serviceUrl;
             $.getJSON(url + "&callback=?", function (data) {
-                console.log(url);
                 for (var i in data.codeSystemVersionCatalogEntryDirectory.entryList) {
                     var entry = data.codeSystemVersionCatalogEntryDirectory.entryList[i];
                     var name = entry.formalName;
