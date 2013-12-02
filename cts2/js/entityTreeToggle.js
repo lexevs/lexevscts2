@@ -41,7 +41,7 @@ function buildTree(dataRef, id, index){
 
         $.getJSON(childUrl + "?format=json&callback=?", function(childData){
             var childList = childData.entityDirectory.entryList;
-            var html=  "<ul id=\"level2\" class=\"tree\" >";
+            var html=  "<ul id=\"level2\" data-li_index='" + index + "' class=\"tree\" >";
             for (var i in childList) {
                 var name = childList[i].knownEntityDescriptionList[0].designation;
                 var ref = childList[i].knownEntityDescriptionList[0].href;
@@ -51,6 +51,7 @@ function buildTree(dataRef, id, index){
             console.log(id);
 //            var select = "label#" + id;
             var select = "label[id=" + id + "][data-index=" + index + "]";
+            console.log("select: " + select);
             $(select).append(html + "</ul>");
 
         });
@@ -75,13 +76,21 @@ function buildLevelOne() {
 
 function buildLevelTwo(){
 var y = false;
-var index = $(this).data("index");
+
 $(document).on("click","label#level1", function(){
+    var href = $(this).data("cts2ref");
+    var id = $(this).attr("id");
+    var index = $(this).data("index");
+    console.log("href: " + href);
+    console.log("id: " + id);
+    console.log("index: " + index);
+
     if(y)
-    { $("ul#level2").toggle("fast");}
+    {
+        var select = "ul[data-li_index=" + index + "]";
+        $(select).toggle("fast");}
     else{
-        var href = $(this).data("cts2ref");
-        var id = $(this).attr("id");
+
         buildTree(href, id, index);
         y = true;
     }

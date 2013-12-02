@@ -28,7 +28,6 @@ $(function() {
 //
 //        });
 
-//    toggleTree();
 
     function buildTreeRecursively(genURL, count, max, html){
 
@@ -89,9 +88,4 @@ $(function() {
     });
     }
 
-
-//    function toggleTreeLi(){$('.tree-toggle').click(function () {
-//        $(this).parent().children('li.tree').toggle(200);
-//    });
-//    }
     });
