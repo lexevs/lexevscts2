@@ -1,5 +1,5 @@
 .tooltip-inner {
-    max-width: 200px;
+    max-width: 400px;
     padding: 3px 8px;
     color: darkslateblue;
     text-align: center;
@@ -14,4 +14,19 @@
     margin-left: -5px;
     border-top-color: whitesmoke;
     border-width: 5px 5px 0;
+}
+
+#valuesets {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+#resolved {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+#codesystems {
+    height: 200px;
+    overflow-y: scroll;
 }
