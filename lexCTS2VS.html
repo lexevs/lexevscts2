@@ -70,9 +70,25 @@
                 </div>
             </div>
             <div style="padding-top: 75px">
-            <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#vsAutoModal">View details &raquo;</a></p>
             </div>
             </div>
+            <div class="modal fade" id="vsAutoModal" tabindex="-1" role="dialog" aria-labelledby="vsAutoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="vsAutoModalLabel">Implement Value Set Auto-complete</h4>
+                        </div>
+                        <div class="modal-body">
+                           Instructions for implementing VS autocomplete here
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
         <div class="col-md-4">
             <div class="well">
@@ -80,27 +96,59 @@
                 <p>Tooltip</p>
                 <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="CDISC ADaM Date Imputation Flag Terminology">CDISC ADaM Date Imputation Flag Terminology</a>
                 <div style="padding-top: 75px">
-                    <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
+                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#vsttModal">View details &raquo;</a></p>
                 </div>
             </div>
+            <div class="modal fade" id="vsttModal" tabindex="-1" role="dialog" aria-labelledby="vsttModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="vsttModalLabel">How to Implement a Value Set ToolTip</h4>
+                        </div>
+                        <div class="modal-body">
+                            Instructions for Implementing Value Set ToolTip here
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
         <div class="col-md-4">
             <div class="well">
                 <h2>Value Sets</h2>
                 <p>dropdown list</p>
-                <div class="btn-group">
+                <div class="btn-group" data-spy="scroll" data-target="#valuesets">
                     <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i>All Value Sets</a>
-                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"  href="#"><span class="caret"></span></a>
                     <ul class="dropdown-menu" id="valuesets">
                         <li><a href="#">Value Sets</a></li>
                         <li class="divider"></li>
                     </ul>
                 </div>
                 <div style="padding-top: 75px">
-                    <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
+                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#vsDDModal">View details &raquo;</a></p>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="vsDDModal" tabindex="-1" role="dialog" aria-labelledby="vsDDModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="vsDDModalLabel">How to Implement CTS2 Value Set Drop Down</h4>
+                    </div>
+                    <div class="modal-body">
+                        Hello Auto-Complete!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
     <div class="row">
         <!--<div class="col-md-3">-->
@@ -119,9 +167,25 @@
                     </ul>
                 </div>
                 <div style="padding-top: 75px">
-                    <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
+                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#vsEntityModal">View details &raquo;</a></p>
                 </div>
             </div>
+            <div class="modal fade" id="vsEntityModal" tabindex="-1" role="dialog" aria-labelledby="vsEntityModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="vsEntityModalLabel">How Implement Value Set Resolution Entity Drop Down Display</h4>
+                        </div>
+                        <div class="modal-body">
+                         Instructions for implementing value set entity resolution and display here.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
         <div class="col-md-3">
 
