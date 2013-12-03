@@ -14,19 +14,26 @@ function buildTreeInit(genURL){
         var rootName = data.entityDescriptionMsg.entityDescription.namedEntity.designationList[0].value;
         var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
         populateRoot(rootName);
-        $.when(addChildData(childUrl,"label#label-root")).then(buildLevelOne());
+        $.when(addChildData(childUrl,"a#label-root")).then(buildLevelOne());
     });
 }
 
 function getChildren(dataRef){
     $.getJSON(dataRef + "?format=json&callback=?", function(childData){
         var childList = childData.entityDirectory.entryList;
-        var html = "<ul id=\"level1\" class=\"tree\" >";
+        var html = "<ul id=\"level1\"  >";
         for (var i in childList) {
             var name = childList[i].knownEntityDescriptionList[0].designation;
             var ref = childList[i].knownEntityDescriptionList[0].href;
-            html = html +"<li><label id=\"level1\" data-index='" + i + "' data-cts2ref='" + ref + "' label-default=\"\" class=\"tree-toggle nav-header\" >"
-                + name + "</li>";
+            var icon = "<span>" +
+                "<i class=\"glyphicon glyphicon-plus-sign\"></i></span>";
+            if(childList.length == 0){
+                icon = "";}
+            html = html +"<li>" +
+                "<a id=\"level1\" data-index='" + i + "' data-cts2ref='" + ref +
+                "' label-default=\"\" class=\"tree-toggle nav-header\" ><span>" +
+                "<i class=\"glyphicon glyphicon-plus-sign\"></i></span>"
+                + name + "</a></li>";
         }
         $("li#root").append(html + "</ul>");
 
@@ -36,7 +43,6 @@ function getChildren(dataRef){
 function buildTree(dataRef, id, index){
     $.getJSON(dataRef + "?format=json&callback=?", function(data){
         console.log(data);
-//        var rootName = data.entityDescriptionMsg.entityDescription.namedEntity.designationList[0].value;
         var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
 
         $.getJSON(childUrl + "?format=json&callback=?", function(childData){
@@ -45,12 +51,12 @@ function buildTree(dataRef, id, index){
             for (var i in childList) {
                 var name = childList[i].knownEntityDescriptionList[0].designation;
                 var ref = childList[i].knownEntityDescriptionList[0].href;
-                html= html +  "<li><label id=\"level2\" data-cts2ref='" + ref + "' label-default=\"\" class=\"tree-toggle nav-header\" >"
-                    + name + "</li>";
+                html= html +  "<li><a id=\"level2\" data-cts2ref='" + ref +
+                    "' label-default=\"\"  >"
+                    + name + "</a></li>";
             }
             console.log(id);
-//            var select = "label#" + id;
-            var select = "label[id=" + id + "][data-index=" + index + "]";
+            var select = "a[id=" + id + "][data-index=" + index + "]";
             console.log("select: " + select);
             $(select).append(html + "</ul>");
 
@@ -62,7 +68,7 @@ function buildTree(dataRef, id, index){
 
 function buildLevelOne() {
     var x = false;
-    $("label#label-root").click(function () {
+    $("a#label-root").click(function () {
         if(x)
         { $("ul#level1").toggle("fast");}
         else{
@@ -77,18 +83,17 @@ function buildLevelOne() {
 function buildLevelTwo(){
 var y = false;
 
-$(document).on("click","label#level1", function(){
+$(document).on("click","a#level1", function(){
     var href = $(this).data("cts2ref");
     var id = $(this).attr("id");
     var index = $(this).data("index");
     console.log("href: " + href);
     console.log("id: " + id);
     console.log("index: " + index);
-
     if(y)
     {
-        var select = "ul[data-li_index=" + index + "]";
-        $(select).toggle("fast");}
+        var select = "ul[id=\"level2\"][data-li_index=" + index + "]";
+        $(select).children().toggle("fast");}
     else{
 
         buildTree(href, id, index);
@@ -102,7 +107,8 @@ buildLevelTwo();
 
 function populateRoot(rootName){
     console.log(rootName);
-    $("label#label-root").html(rootName);
+    var iconizedRoot = "<span><i class=\"glyphicon glyphicon-plus-sign\"></i></span>" + rootName;
+    $("a#label-root").html(iconizedRoot);
 }
 
 function addChildData(childUrl, id){
