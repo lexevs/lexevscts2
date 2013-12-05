@@ -4,11 +4,12 @@
  * Date: 11/25/13
  * Time: 7:08 AM
  */
+
+
+// define the url of the root node
 var treeUrl = "http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.10a/entity/C3399";
-//var baseUrl = "http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.10a/entity/"
-//var html = "";
 
-
+//initialise the root by making a call to the rest service
 function buildTreeInit(genURL){
     $.getJSON(genURL + "?format=json&callback=?", function(data){
         var rootName = data.entityDescriptionMsg.entityDescription.namedEntity.designationList[0].value;
@@ -18,6 +19,22 @@ function buildTreeInit(genURL){
     });
 }
 
+//When the root is clicked, get the children of the root and display them.
+function buildLevelOne() {
+    var x = false;
+    $("a#label-root").click(function () {
+        if(x)
+        { $("ul#level1").toggle("fast");}
+        else{
+            var href = $(this).data("cts2ref");
+            var id = $(this).attr("id");
+            getChildren(href, id);
+            x = true;
+        }
+    });
+}
+
+//Get the children of this root, format them in html and attach them to a list item with id of "root"
 function getChildren(dataRef){
     $.getJSON(dataRef + "?format=json&callback=?", function(childData){
         var childList = childData.entityDirectory.entryList;
@@ -40,9 +57,28 @@ function getChildren(dataRef){
     });
 }
 
+//if a level one child is clicked, build the next level of children
+function buildLevelTwo(){
+    var y = false;
+
+    $(document).on("click","a#level1", function(){
+        var href = $(this).data("cts2ref");
+        var id = $(this).attr("id");
+        var index = $(this).data("index");
+        if(y)
+        {
+            var select = "ul[id=\"level2\"][data-li_index=" + index + "]";
+            $(select).children().toggle("fast");}
+        else{
+
+            buildTree(href, id, index);
+            y = true;
+        }
+    });
+}
+//Get the children of the root's child
 function buildTree(dataRef, id, index){
     $.getJSON(dataRef + "?format=json&callback=?", function(data){
-        console.log(data);
         var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
 
         $.getJSON(childUrl + "?format=json&callback=?", function(childData){
@@ -55,9 +91,7 @@ function buildTree(dataRef, id, index){
                     "' label-default=\"\"  >"
                     + name + "</a></li>";
             }
-            console.log(id);
             var select = "a[id=" + id + "][data-index=" + index + "]";
-            console.log("select: " + select);
             $(select).append(html + "</ul>");
 
         });
@@ -66,52 +100,16 @@ function buildTree(dataRef, id, index){
 
 
 
-function buildLevelOne() {
-    var x = false;
-    $("a#label-root").click(function () {
-        if(x)
-        { $("ul#level1").toggle("fast");}
-        else{
-        var href = $(this).data("cts2ref");
-        var id = $(this).attr("id");
-        getChildren(href, id);
-        x = true;
-        }
-    });
-}
-
-function buildLevelTwo(){
-var y = false;
-
-$(document).on("click","a#level1", function(){
-    var href = $(this).data("cts2ref");
-    var id = $(this).attr("id");
-    var index = $(this).data("index");
-    console.log("href: " + href);
-    console.log("id: " + id);
-    console.log("index: " + index);
-    if(y)
-    {
-        var select = "ul[id=\"level2\"][data-li_index=" + index + "]";
-        $(select).children().toggle("fast");}
-    else{
-
-        buildTree(href, id, index);
-        y = true;
-    }
-});
-}
-
 buildTreeInit(treeUrl);
 buildLevelTwo();
 
+// create some html containing the root name
 function populateRoot(rootName){
-    console.log(rootName);
     var iconizedRoot = "<span><i class=\"glyphicon glyphicon-plus-sign\"></i></span>" + rootName;
     $("a#label-root").html(iconizedRoot);
 }
 
+// adding the URL of the children of the root as data to the javascript model of the html
 function addChildData(childUrl, id){
     $(id).data("cts2ref", childUrl);
-    console.log($(id).data("cts2ref"));
 }

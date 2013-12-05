@@ -30,3 +30,10 @@
     height: 200px;
     overflow-y: scroll;
 }
+
+.modal-wide {
+    width:750px;
+}
+span.r {
+    color:rosybrown;
+}

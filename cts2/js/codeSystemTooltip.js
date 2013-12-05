@@ -12,14 +12,10 @@ $(document).ready(function(){
         var html = getCodeSystemTableInfo(cts2JSON)
         $('#tooltip').tooltip({title: html, html: true });
     });
-//    $('#tooltip').tooltip({title: "\<div> guess this is html</div>", html: true
-//    });
-    /**
-     * Create an HTML table from the JSON for a CODE SYSTEM and return it.
-     * @param {Object} valueSetJson
-     */
+
+
     function getCodeSystemTableInfo(codeSystemJson) {
-        // get the descripiton, current version, and code system name
+        // get the description, current version, and code system name
         var entryList = codeSystemJson.codeSystemVersionCatalogEntryDirectory.entryList;
         for(i in entryList){
            var entry =     codeSystemJson.codeSystemVersionCatalogEntryDirectory.entryList[i];
