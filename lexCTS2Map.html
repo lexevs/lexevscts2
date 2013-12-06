@@ -65,7 +65,10 @@
             <div class="well">
             <div class="example example-maps">
                 <h2 class="example-name">Maps</h2>
-                <p class="example-description">Auto Complete</p>
+                <p class="example-description">
+                    Auto Complete function returns a list of possibilities based on the
+                character set as it is typed into the text area.
+                </p>
                 <div class="demo">
                     <input class="typeahead" type="text" placeholder="map">
                 </div>
@@ -109,11 +112,11 @@ $('.example-maps .typeahead').typeahead({
 });
                            </code></pre>
                             <p>Here the "name" attribute keys into the html div example-maps and the "valueKey"
-                                refers to the matching name of the property returned from the REST call.</p>
+                                refers to the property matched against in the rest call.  </p>
                             <h4>Resources</h4>
                             <p>All source and files are available at this
                                 <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
-                            <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>, <span class="r">valueSetTypeahead.js</span>,
+                            <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>, <span class="r">mapTypeahead.js</span>,
                                 <span class="r">typeahead.css</span>, <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
                         </div>
                         <div class="modal-footer">
@@ -126,7 +129,7 @@ $('.example-maps .typeahead').typeahead({
         <div class="col-md-4">
             <div class="well">
                 <h2>Maps</h2>
-                <p>Tooltip</p>
+                <p>Tooltip function displays the metadata of a given Map object on mouse hover</p>
                 <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="SNOMEDCT_2010_01_31_TO_ICD9CM_2010-20100131">SNOMEDCT_TO_ICD9CM</a>
                 <div style="padding-top: 75px">
                     <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#mapTTModal">View details &raquo;</a></p>
@@ -177,12 +180,12 @@ $(document).ready(function(){
     return html;
     }
 });
-                                </code>
+                            </code>
                             </pre>
                             <p>
-                                The REST URL for the value set is completed by a hidden data input named "data-cts"
+                                The REST URL for the map is completed by a hidden data input named "data-cts"
                                 The <i>getJson()</i> method returns JSON formatted text from the service with is parsed
-                                automatically into jsonp.  The resulting objects can be referenced for value set
+                                automatically into jsonp.  The resulting objects can be referenced for map
                                 metadata values after which some html is formatted around them and passed back to the
                                 tooltip to be shown on mouse hover.
                             </p>
@@ -191,7 +194,7 @@ $(document).ready(function(){
                                 <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
                             <p>
                                 Pertinent files include the <span class="r">bootstrap3 folder</span>,
-                                <span class="r">valueSetToolTip.js</span>, and <span class="r">cts2.css</span>.
+                                <span class="r">mapToolTip.js</span>, and <span class="r">cts2.css</span>.
                             </p>
                         </div>
                         <div class="modal-footer">
@@ -204,7 +207,7 @@ $(document).ready(function(){
         <div class="col-md-4">
             <div class="well">
                 <h2>Maps</h2>
-                <p>dropdown list</p>
+                <p>A dropdown list of all maps in a given terminology service.</p>
                 <div class="btn-group">
                     <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i>All Maps</a>
                     <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -270,7 +273,7 @@ $(document).ready(
                         <p>All source and files are available at this
                             <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
                         <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>,
-                            <span class="r">cts2.css</span> and <span class="r">vsEntitiesDropDown.js</span></p>
+                            <span class="r">cts2.css</span> and <span class="r">mapDropDown.js</span></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -285,7 +288,8 @@ $(document).ready(
         <div class="col-md-4">
             <div class="well">
                 <h2>Maps</h2>
-                <p>Alert for a search on an NCIt enity Map (Try C26913)</p>
+                <p>A Bootstrap style alert is generated for a search on an NCI Thesaurus entity in a Map between
+                    the Thesaurus and ICD9CM (Try C26913)</p>
             <div class="input-group">
                 <span class="input-group-btn" >
                     <button class="btn btn-default" type="button" id="entity-btn">Go!</button>
@@ -306,7 +310,56 @@ $(document).ready(
                         <h4 class="modal-title" id="mapEntityModalLabel">How to Implement the Map Entity Search</h4>
                     </div>
                     <div class="modal-body">
-                        Instructions for implementing the Map entity search here
+                    <h3>HTML Required</h3>
+                    <pre>
+                    <code>
+&lt;div id=&quot;showMap&quot;&gt;&lt;/div&gt;
+    &lt;div style=&quot;padding-top: 75px&quot;&gt;
+        &lt;p&gt;&lt;a class=&quot;btn btn-info&quot; href=&quot;#&quot; role=&quot;button&quot;
+        data-toggle=&quot;modal&quot; data-target=&quot;#mapEntityModal&quot;&gt;
+        View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </code>
+                    </pre>
+                    <h3>JavaScript</h3>
+                    <pre>
+                        <code>
+$('#entity-btn').button();
+
+$('#entity-btn').click(function(event) {
+    var value =  $("input#entity").val();
+    var urlMod = entityURL.replace("${code}", value) + "?format=json&callback=?"
+    $.jsonp({
+        url: urlMod ,
+        success: function(mapJson) {
+        var metadata = getHTML(mapJson);
+        $("#showMap").html(metadata);
+        },
+    error: function(d,msg) {
+        validateCode();
+        }
+    });
+});
+                    </code>
+                    </pre>
+                        <p>
+                        Initialize a button and set up an event handler for it which kicks off an ajax-like call back
+                        called jsonp specially adapted to handle the 404 errors that a bad request will cause.
+                        If the call is successful then it will call a method to generate an html table populated with
+                        the attributes of the returned JSON object, otherwise it will create an error message viewable
+                        by the user.
+                        </p>
+                        <h3>
+                        Resources
+                        </h3>
+
+                        <p>All source and files are available at this
+                            <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                        <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>,
+                            <span class="r">cts2.css</span>, <span class="r">jquery.jsonp.js</span> and
+                            <span class="r">readMapVersionEntry.js</span></p>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

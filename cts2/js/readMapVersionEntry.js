@@ -13,17 +13,12 @@ $(document).ready(function(){
 
             $('#entity-btn').click(function(event) {
                 var value =  $("input#entity").val();
-//                $.getJSON(entityURL.replace("${code}", value) + "?format=json&callback=?", function(mapJson){
-//                    var metadata = getHTML(mapJson);
-//                    $("#showMap").html(metadata);
-//                }).fail(validateCode());
                 var urlMod = entityURL.replace("${code}", value) + "?format=json&callback=?"
                 $.jsonp({
                     url: urlMod ,
                     success: function(mapJson) {
                         var metadata = getHTML(mapJson);
                         $("#showMap").html(metadata);
-
                     },
                     error: function(d,msg) {
                        validateCode();
