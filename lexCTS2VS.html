@@ -64,7 +64,8 @@
             <div class="well">
             <div class="example example-valuesets">
                 <h2 class="example-name">Value Set</h2>
-                <p class="example-description">Auto Complete</p>
+                <p class="example-description">This demonstrates and auto completion function on names of value sets in
+                the LexEVS terminology service</p>
                 <div class="demo">
                     <input class="typeahead" type="text" placeholder="valueset">
                 </div>
@@ -74,14 +75,51 @@
             </div>
             </div>
             <div class="modal fade" id="vsAutoModal" tabindex="-1" role="dialog" aria-labelledby="vsAutoModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog, modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="vsAutoModalLabel">Implement Value Set Auto-complete</h4>
+                            <h4 class="modal-title" id="vsAutoModalLabel">How to Implement Value Set Auto-complete</h4>
                         </div>
                         <div class="modal-body">
-                           Instructions for implementing VS autocomplete here
+                            <p>This function is based on a Javascript framework called BootStrap and a Bootstrap Plugin called Typeahead</p>
+                            <h4> HTML Required</h4>
+                           <pre><code>
+&lt;div class=&quot;example example-valuesets&quot;&gt;
+    &lt;h2 class=&quot;example-name&quot;&gt;Value Set&lt;/h2&gt;
+    &lt;p class=&quot;example-description&quot;&gt;Auto Complete&lt;/p&gt;
+    &lt;div class=&quot;demo&quot;&gt;
+        &lt;input class=&quot;typeahead&quot; type=&quot;text&quot; placeholder=&quot;valueset&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                           </code></pre>
+                            <h4>Javascript</h4>
+                           <pre><code>
+$('.example-valuesets .typeahead').typeahead({
+    name: 'valuesets',
+    valueKey: 'content',
+    remote: {
+        url : 'http://bmidev4:5555/cts2/resolvedvaluesets?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
+        filter: function (data) {
+            var values = []
+            var valueSets =  data.resolvedValueSetDirectory.entryList;
+            for(i in valueSets){
+                var entry = data.resolvedValueSetDirectory.entryList[i].resolvedHeader.resolutionOf.valueSet.content;
+            values.push(entry)
+            }
+            return values;
+        }
+        },
+    limit: 3
+});
+                           </code></pre>
+                            <p>Here the "name" attribute keys into the html div example-valuesets and the "valueKey"
+                                refers to the matching name of the property returned from the REST call.</p>
+                            <h4>Resources</h4>
+                            <p>All source and files are available at this
+                                <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                            <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>, <span class="r">valueSetTypeahead.js</span>,
+                                <span class="r">typeahead.css</span>, <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -93,21 +131,74 @@
         <div class="col-md-4">
             <div class="well">
                 <h2>Value Set</h2>
-                <p>Tooltip</p>
+                <p>Tooltip for exposing a resolved value set's metadata</p>
                 <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="CDISC ADaM Date Imputation Flag Terminology">CDISC ADaM Date Imputation Flag Terminology</a>
                 <div style="padding-top: 75px">
                     <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#vsttModal">View details &raquo;</a></p>
                 </div>
             </div>
             <div class="modal fade" id="vsttModal" tabindex="-1" role="dialog" aria-labelledby="vsttModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="vsttModalLabel">How to Implement a Value Set ToolTip</h4>
                         </div>
                         <div class="modal-body">
-                            Instructions for Implementing Value Set ToolTip here
+                            <p>This function is based on BootStrap, a Javascript Framework</p>
+                            <h4> HTML Required</h4>
+                            <pre>
+                            <code>
+&lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; id=&quot;tooltip&quot;
+data-cts=&quot;CDISC ADaM Date Imputation Flag Terminology&quot;&gt;CDISC ADaM Date Imputation Flag Terminology&lt;/a&gt;
+                            </code>
+                            </pre>
+                            <h4>Javascript</h4>
+                            <pre>
+                                <code>
+$(document).ready(function(){
+    var url = "http://bmidev4:5555/cts2/resolvedvaluesets?matchvalue=${valueSetName}&filtercomponent=resourceName&format=json&callback=?";
+    var vsID =  $("#tooltip").attr("data-cts");
+    $.getJSON(url.replace("${valueSetName}", vsID), function(cts2JSON) {
+        var html = getValueSetTableInfo(cts2JSON);
+        $('#tooltip').tooltip({title: html, html: true });
+    });
+
+    function getValueSetTableInfo(valueSetJson) {
+        // get the description, URI, and value set name
+        var entryList = valueSetJson.resolvedValueSetDirectory.entryList;
+        for(i in entryList){
+            var entry =     valueSetJson.resolvedValueSetDirectory.entryList[i];
+            var valueSetName =  entry.resolvedHeader.resolutionOf.valueSet.content;
+            var URI = entry.resolvedValueSetURI;
+            var description = entry.resolvedHeader.resolutionOf.valueSetDefinition.content;
+        }
+        var html =
+        "&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;" +
+        "&lt;th colspan=&quot;2&quot; &gt; Value Set &lt;/th&gt;" +
+        "&lt;tr&gt;&lt;td &gt;Name:&lt;/t&gt;&lt;td&gt;" + valueSetName+ "&lt;/td&gt;&lt;/tr&gt;" +
+        "&lt;tr&gt;&lt;td &gt;URI:&lt;/td&gt;&lt;td&gt;" + URI + "&lt;/td&gt;&lt;/tr&gt;" +
+        "&lt;tr&gt;&lt;td &gt;Description code:&lt;/td&gt;&lt;td&gt;" + description + "&lt;/td&gt;&lt;/tr&gt;" +
+        "&lt;/table&gt;";
+        return html;
+    }
+});
+                                </code>
+                            </pre>
+                            <p>
+                                The REST URL for the value set is completed by a hidden data input named "data-cts"
+                                The <i>getJson()</i> method returns JSON formatted text from the service with is parsed
+                                automatically into jsonp.  The resulting objects can be referenced for value set
+                                metadata values after which some html is formatted around them and passed back to the
+                                tooltip to be shown on mouse hover.
+                            </p>
+                            <h4>Resources</h4>
+                            <p>All source and files are available at this
+                                <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                            <p>
+                                Pertinent files include the <span class="r">bootstrap3 folder</span>,
+                                <span class="r">valueSetToolTip.js</span>, and <span class="r">cts2.css</span>.
+                            </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -119,7 +210,8 @@
         <div class="col-md-4">
             <div class="well">
                 <h2>Value Sets</h2>
-                <p>dropdown list</p>
+                <p>A dropdown list of all value sets (limited to the first 50 by default paging values in the
+                CTS2 REST implementation over LexEVS.)</p>
                 <div class="btn-group" data-spy="scroll" data-target="#valuesets">
                     <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i>All Value Sets</a>
                     <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"  href="#"><span class="caret"></span></a>
@@ -134,14 +226,58 @@
             </div>
         </div>
         <div class="modal fade" id="vsDDModal" tabindex="-1" role="dialog" aria-labelledby="vsDDModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-wide">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="vsDDModalLabel">How to Implement CTS2 Value Set Drop Down</h4>
                     </div>
                     <div class="modal-body">
-                        Hello Auto-Complete!
+                        <p>This function is based on a Javascript framework called BootStrap</p>
+                        <h4> HTML Required</h4>
+                           <pre><code>
+&lt;div class=&quot;btn-group&quot; data-spy=&quot;scroll&quot; data-target=&quot;#valuesets&quot;&gt;
+    &lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot;&gt;
+        &lt;i class=&quot;icon-user icon-white&quot;&gt;&lt;/i&gt;All Value Sets
+    &lt;/a&gt;
+    &lt;a class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;
+    href=&quot;#&quot;&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;ul class=&quot;dropdown-menu&quot; id=&quot;valuesets&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Value Sets&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+                           </code></pre>
+                        <h4>Javascript</h4>
+                           <pre><code>
+var ValueSetListConfig = {
+serviceUrl: "http://bmidev4:5555/cts2/resolvedvaluesets?format=json"
+};
+
+$(document).ready(
+    function() {
+        var vsurl = ValueSetListConfig.serviceUrl;
+        $.getJSON(vsurl + "&callback=?", function (vsdata) {
+            for (var i in vsdata.resolvedValueSetDirectory.entryList) {
+            var entry = vsdata.resolvedValueSetDirectory.entryList[i];
+            var name = entry.resolvedHeader.resolutionOf.valueSet.content;
+            $("ul.dropdown-menu#valuesets").append("&lt;li&gt;&lt;a href=&quot;#&quot;&gt;" + name + "&lt;/a&gt;&lt;/li&gt;");
+    }
+    });
+});
+                           </code></pre>
+                        <p>
+                            Here the class attribute "dropdown-menu" keys is a selector value allowing the list of
+                            JSON derived objects to be processed into a set of html attributes which are appended to
+                            an html list created by bootstrap functions. Drop down scrolling is controlled by an
+                            overflow designation in the cts2.css file.
+                        </p>
+                        <h4>Resources</h4>
+                        <p>All source and files are available at this
+                            <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                        <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>,
+                            <span class="r">cts2.css</span> and <span class="r">valueSetDropDown.js</span></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -157,7 +293,8 @@
         <div class="col-md-5">
             <div class="well">
                 <h2>Value Set Entities</h2>
-                <p>dropdown list</p>
+                <p>A resolved value set's entities are listed in this dropdown list. For code clarity we have only
+                resolved the first 50 after which we'd need to page to the next set via another REST call.</p>
                 <div class="btn-group">
                     <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i>Unified Code for Units of Measure Terminology</a>
                     <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -171,14 +308,59 @@
                 </div>
             </div>
             <div class="modal fade" id="vsEntityModal" tabindex="-1" role="dialog" aria-labelledby="vsEntityModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="vsEntityModalLabel">How Implement Value Set Resolution Entity Drop Down Display</h4>
                         </div>
                         <div class="modal-body">
-                         Instructions for implementing value set entity resolution and display here.
+                            <p>This function is based on a Javascript framework called BootStrap</p>
+                            <h4> HTML Required</h4>
+                           <pre><code>
+&lt;div class=&quot;btn-group&quot;&gt;
+    &lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot;&gt;
+        &lt;i class=&quot;icon-user icon-white&quot;&gt;&lt;/i&gt;Unified Code for Units of Measure Terminology
+    &lt;/a&gt;
+    &lt;a class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;ul class=&quot;dropdown-menu&quot; id=&quot;resolved&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Value Sets&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+                           </code></pre>
+                            <h4>Javascript</h4>
+                           <pre><code>
+var resValueSetListConfig = {
+    serviceUrl: "http://bmidev4:5555/cts2/valueset/Unified Code for Units of Measure Terminology/definition/3f9797c0/resolution?format=json"
+    };
+
+$(document).ready(
+    function() {
+    var url = resValueSetListConfig.serviceUrl;
+    var encodedUrl = encodeURI(url);
+    $.getJSON(encodedUrl + "&callback=?", function (data) {
+        or (var i in data.iteratableResolvedValueSet.entryList) {
+        var entry = data.iteratableResolvedValueSet.entryList[i];
+        var name = entry.designation;
+        $("ul.dropdown-menu#resolved").append("&lt;li&gt;&lt;a href=&quot;#&quot;&gt;" + name + "&lt;/a&gt;&lt;/li&gt;");
+        }
+    });
+});
+                           </code></pre>
+                            <p>
+                                Here the class attribute "dropdown-menu" keys is a selector value allowing the list of
+                                JSON derived objects to be processed into a set of html attributes which are appended to
+                                an html list a created by bootstrap functions.  Drop down scrolling is controlled in the
+                                cts.css with an overflow designation.
+                            </p>
+                            <h4>Resources</h4>
+                            <p>All source and files are available at this
+                                <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                            <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>,
+                                <span class="r">cts2.css</span> and <span class="r">vsEntitiesDropDown.js</span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -194,7 +376,7 @@
     <hr>
 
     <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Mayo Clinic 2013</p>
     </footer>
 </div> <!-- /container -->
 

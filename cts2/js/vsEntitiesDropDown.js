@@ -5,13 +5,13 @@
  * Time: 4:03 PM
  * To change this template use File | Settings | File Templates.
  */
-var CodeSystemListConfig = {
+var resValueSetListConfig = {
     serviceUrl: "http://bmidev4:5555/cts2/valueset/Unified Code for Units of Measure Terminology/definition/3f9797c0/resolution?format=json"
 };
 
 $(document).ready(
     function() {
-        var url = CodeSystemListConfig.serviceUrl;
+        var url = resValueSetListConfig.serviceUrl;
         var encodedUrl = encodeURI(url);
         $.getJSON(encodedUrl + "&callback=?", function (data) {
 //            console.log(encodedUrl);

@@ -65,7 +65,8 @@
             <div class="well">
             <div class="example example-codesystems">
                 <h2 class="example-name">Code Systems</h2>
-                <p class="example-description">Auto Complete</p>
+                <p class="example-description">Providing an auto-completion function for code system designations.
+                Start typing a word and a list of matching code systems will appear</p>
                 <div class="demo">
                     <input class="typeahead" type="text" placeholder="code system">
                 </div>
@@ -76,14 +77,47 @@
             </div>
             </div>
             <div class="modal fade" id="csAutoModal" tabindex="-1" role="dialog" aria-labelledby="csAutoModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="csAutoModalLabel">How to Implement Coding Scheme Auto-complete</h4>
                         </div>
                         <div class="modal-body">
-                           AutoComplete instructions here
+                            <p>This function is based on a Javascript framework called BootStrap and a Bootstrap Plugin called Typeahead</p>
+                            <h4> HTML Required</h4>
+                           <pre><code>
+&lt;div class=&quot;example example-codesystems&quot;&gt;
+    &lt;h2 class=&quot;example-name&quot;&gt;Code Systems&lt;/h2&gt;
+    &lt;p class=&quot;example-description&quot;&gt;Auto Complete&lt;/p&gt;
+    &lt;div class=&quot;demo&quot;&gt;
+        &lt;input class=&quot;typeahead&quot; type=&quot;text&quot; placeholder=&quot;code system&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                           </code></pre>
+                           <h4>Javascript</h4>
+                           <pre><code>
+$('.example-codesystems .typeahead').typeahead({
+    name: 'codesystems',
+    valueKey: 'codeSystemVersionName',
+    remote: {
+        url : 'http://bmidev4:5555/cts2/codesystemversions?matchvalue=%QUERY
+        &filtercomponent=resourceName&format=json&callback=?',
+        filter: function (data) {
+        var codeSystems =  data.codeSystemVersionCatalogEntryDirectory.entryList;
+        return codeSystems;
+            }
+    },
+    limit: 3
+ });
+                           </code></pre>
+                        <p>Here the "name" attribute keys into the html div example-codesystems and the "valueKey"
+                            refers to the matching name of the property returned from the REST call.</p>
+                        <h4>Resources</h4>
+                        <p>All source and files are available at this
+                            <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                        <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>, <span class="r">codeSystemTypeahead.js</span>,
+                            <span class="r">typeahead.css</span>, <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -94,22 +128,68 @@
         </div>
         <div class="col-md-4">
             <div class="well tree">
-            <h2>Code Systems</h2>
-            <p>Tooltip</p>
+            <h2>Code System</h2>
+            <p>Code system metadata tooltip displays code system metadata on cursor hover</p>
             <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="NCI_Thesaurus-10.07e">NCI Thesaurus</a>
             <div style="padding-top: 75px">
                 <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csToolTipModal">View details &raquo;</a></p>
             </div>
             </div>
             <div class="modal fade" id="csToolTipModal" tabindex="-1" role="dialog" aria-labelledby="csttModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="csttModalLabel">How to Implement a CTS2 Coding Scheme ToolTip</h4>
                         </div>
                         <div class="modal-body">
-                            Instructions for the ToolTip here
+                            <p>This function is based on BootStrap, a Javascript Framework</p>
+                            <h4> HTML Required</h4>
+                            <pre><code>
+&lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; id=&quot;tooltip&quot; data-cts=&quot;NCI_Thesaurus-10.07e&quot;&gt;NCI Thesaurus&lt;/a&gt;
+                            </code></pre>
+                            <h4>Javascript</h4>
+                            <pre><code>
+var url = "http://bmidev4:5555/cts2/codesystemversions?matchvalue=${codeSystemName}&filtercomponent=resourceName&format=json&callback=?";
+var csID =  $("#tooltip").attr("data-cts");
+$.getJSON(url.replace("${codeSystemName}", csID), function(cts2JSON) {
+    var html = getCodeSystemTableInfo(cts2JSON)
+    $('#tooltip').tooltip({title: html, html: true });
+});
+
+function getCodeSystemTableInfo(codeSystemJson) {
+// get the description, current version, and code system name
+    var entryList = codeSystemJson.codeSystemVersionCatalogEntryDirectory.entryList;
+    for(i in entryList){
+    var entry =     codeSystemJson.codeSystemVersionCatalogEntryDirectory.entryList[i];
+    var codeSystemName =  entry.codeSystemVersionName;
+    var currentVersion = entry.officialResourceVersionId;
+    var description = entry.resourceSynopsis.value;
+    }
+    var html =
+       &quot;&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;&quot; +
+       &quot;&lt;th colspan=&quot;2&quot; &gt; Code System &lt;/th&gt;&quot; +
+       &quot;&lt;tr&gt;&lt;td &gt;Name:&lt;/td&gt;&lt;td&gt;&quot; + codeSystemName + "&lt;/td&gt;&lt;/tr&gt;&quot; +
+       &quot;&lt;tr&gt;&lt;td &gt;Current Version:&lt;/td&gt;&lt;td&gt;&quot; + currentVersion + "&lt;/td&gt;&lt;/tr&gt;&quot; +
+       &quot;&lt;tr&gt;&lt;td &gt;Description:&lt;/td&gt;&lt;td&gt;" + description + "&lt;/td&gt;&lt;/tr&gt;&quot; +
+       &quot;&lt;/table&gt;&quot;
+    return html;
+}
+                            </code></pre>
+                            <p>
+                               The REST URL for the code system is completed by a hidden data input named "data-cts"
+                               The <i>getJson()</i> method returns JSON formatted text from the service with is parsed
+                               automatically into jsonp.  The resulting objects can be referenced for code system
+                               metadata values after which some html is formatted around them and passed back to the
+                               tooltip to be shown on mouse hover.
+                            </p>
+                            <h4>Resources</h4>
+                            <p>All source and files are available at this
+                                <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                            <p>
+                               Pertinent files include the <span class="r">bootstrap3 folder</span>,
+                                <span class="r">codeSystemToolTip.js</span>, and <span class="r">cts2.css</span>.
+                            </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -120,7 +200,8 @@
         </div>
         <div class="col-md-4">
             <div class="well">
-                <h2>Tree</h2>
+                <h2>Entity Heirarchy Tree</h2>
+                <p>Displays the children of an entity on mouse click</p>
                 <div id="tree-replace">
                 <ul id="rootul" class="nav">
                     <li id ="root">
@@ -134,14 +215,65 @@
             </div>
         </div>
         <div class="modal fade" id="csTreeModal" tabindex="-1" role="dialog" aria-labelledby="csTreeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-wide">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="csTreeModalLabel">How to Implement a CTS2 Generated Tree</h4>
                     </div>
                     <div class="modal-body">
-                        Tree Generation Instructions
+                        <p>This function is based on BootStrap, a Javascript Framework</p>
+                        <h4>HTML Required</h4>
+                        <pre>
+                            <code>
+&lt;div id=&quot;tree-replace&quot;&gt;
+    &lt;ul id=&quot;rootul&quot; class=&quot;nav&quot;&gt;
+        &lt;li id =&quot;root&quot;&gt;
+            &lt;a id=&quot;label-root&quot; data-cts2ref=&quot;&quot; label-default=&quot;&quot; &gt;
+            &lt;span&gt;&lt;i class=&quot;glyphicon glyphicon-plus-sign&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;/a&gt;
+         &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+                            </code>
+                        </pre>
+                        <h4>JavaScript</h4>
+                        <p>
+                            <i>
+                                <b>This highly dynamic implementation in entityTreeToggle.js is too lengthy to reproduce here.
+                        Essentially it consists of a set of nested lists, each dynamically generated from REST calls
+                        to a LexEVS CTS2 Service.
+                                </b>
+                            </i>
+                        </p>
+                        <p>
+                            This widget keys off the "a" tag id reference "label-root" to make an immediate call to the
+                            REST service to populate the root based on a hard coded URL. It appends html to this "a" tag
+                            and has an event handler bound to it once it completes its processing of the JSON and stores
+                            a reference to the URL link to the children of this term. Reference methods here are
+                            <i>buildTreeInit()</i>, which calls populateRoot adding the html.  <i>addChildData</i>
+                            appends the invisible URL to the html. When this completes an event handler is added with
+                            the method <i>buildLevelOne()</i>. Everything waits for the next click on the root element
+                            at this point.
+                        </p>
+                        <p>
+                            On clicking the root element the <i>getChildren()</i> method is called and the hidden
+                            child URL is called, and the response processed and formatted into html list items, which
+                            are attached to the line item containing the root's "a" tag.
+                        </p>
+                        <p>
+                            <i>buildLevelTwo()</i> method attaches event handlers to any existing children elements at
+                            any time.  On click the next level of children is created dynamically with the method
+                            <i>buildTree().</i>  Some adjustments will need to be made to adapt this method for further
+                            hierarchy extension.   All child elements can be toggled to appear and disappear.
+                        </p>
+                        <h4>Resources</h4>
+                        <p>All source and files are available at this
+                            <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                        <p>
+                            Pertinent files include the <span class="r">bootstrap3 folder</span>, <span class="r">
+                            entityTreeToggle.js</span>, and <span class="r">tree.css</span>
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -155,7 +287,7 @@
             <div class="well">
                 <div class="example example-entities">
                     <h2 class="example-name">Entity Search</h2>
-                    <p class="example-description">Auto Complete</p>
+                    <p class="example-description">Auto Complete search on entities from the NCI Thesaurus</p>
                     <div class="demo">
                         <input class="typeahead" type="text" placeholder="Type some text">
                     </div>
@@ -165,14 +297,52 @@
                 </div>
             </div>
             <div class="modal fade" id="csEntityModal" tabindex="-1" role="dialog" aria-labelledby="csEntityModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="cdEntityModalLabel">How to Implement an Entity AutoComplete</h4>
                         </div>
                         <div class="modal-body">
-                            Drop Down Instructions here
+                            <p>This function is based on a Javascript framework called BootStrap and a Bootstrap Plugin called Typeahead</p>
+                            <h4> HTML Required</h4>
+                           <pre><code>
+&lt;div class=&quot;example example-entities&quot;&gt;
+    &lt;h2 class=&quot;example-name&quot;&gt;Entity Search&lt;/h2&gt;
+    &lt;p class=&quot;example-description&quot;&gt;Auto Complete search on entities from the NCI Thesaurus&lt;/p&gt;
+    &lt;div class=&quot;demo&quot;&gt;
+        &lt;input class=&quot;typeahead&quot; type=&quot;text&quot; placeholder=&quot;Type some text&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                           </code></pre>
+                            <h4>Javascript</h4>
+                           <pre><code>
+$('.example-entities .typeahead').typeahead({
+    name: 'entities',
+    valueKey: 'designation',
+    remote: {
+        url : 'http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.10a/entities?matchvalue=%QUERY&format=json&callback=?',
+        filter: function (data) {
+            var entryList =  data.entityDirectory.entryList;
+            var entities = [];
+            for(i in entryList){
+            //Only shows the first entity description
+            entities.push(entryList[i].knownEntityDescriptionList[0].designation);
+            }
+    return entities;
+    },
+    rateLimitWait : 600
+    },
+    limit: 3
+});
+                           </code></pre>
+                            <p>Here the "name" attribute keys into the html div example-entities and the "valueKey"
+                                refers to the matching name of the property returned from the REST call.</p>
+                            <h4>Resources</h4>
+                            <p>All source and files are available at this
+                                <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                            <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>, <span class="r">entityTypeahead.js</span>,
+                                <span class="r">typeahead.css</span>, <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -184,7 +354,7 @@
         <div class="col-md-4">
             <div class="well">
                 <h2>Code Systems</h2>
-                <p>dropdown list</p>
+                <p>A dropdown list of all code systems in this service</p>
                 <div class="btn-group">
                     <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i>All Code Systems</a>
                     <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -198,14 +368,56 @@
                 </div>
             </div>
             <div class="modal fade" id="csDDModal" tabindex="-1" role="dialog" aria-labelledby="csDDModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="cdDDModalLabel">Implement a CTS2 Code Systems Drop Down List</h4>
                         </div>
                         <div class="modal-body">
-                           Drop Down List instructions here.
+                            <p>This function is based on a Javascript framework called BootStrap</p>
+                            <h4> HTML Required</h4>
+                           <pre><code>
+&lt;div class=&quot;btn-group&quot;&gt;
+    &lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot;&gt;
+        &lt;i class=&quot;icon-user icon-white&quot;&gt;&lt;/i&gt;All Code Systems&lt;/a&gt;
+    &lt;a class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; href=&quot;#&quot;&gt;
+    &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;ul class=&quot;dropdown-menu&quot; id=&quot;codesystems&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Code Systems&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+                           </code></pre>
+                            <h4>Javascript</h4>
+                           <pre><code>
+var CodeSystemListConfig = {
+    serviceUrl: "http://bmidev4:5555/cts2/codesystemversions?format=json"
+    };
+
+$(document).ready(
+    function() {
+        var url = CodeSystemListConfig.serviceUrl;
+        $.getJSON(url + "&callback=?", function (data) {
+            for (var i in data.codeSystemVersionCatalogEntryDirectory.entryList) {
+            var entry = data.codeSystemVersionCatalogEntryDirectory.entryList[i];
+            var name = entry.formalName;
+            var designation = entry.documentURI;
+            var uri = entry.href;
+            $("ul.dropdown-menu").append("&lt;li&gt;&lt;a href=&quot;#&quot;&gt;" + name + "&lt;/a&gt;&lt;/li&gt;");
+        }
+    });
+});
+                           </code></pre>
+                            <p>
+                               Here the class attribute "dropdown-menu" keys is a selector value allowing the list of
+                               JSON derived objects to be processed into a set of html attributes which are appended to
+                               an html list a created by bootstrap functions.
+                            </p>
+                            <h4>Resources</h4>
+                            <p>All source and files are available at this
+                                <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                            <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span> and <span class="r">codeSystemDropDown.js</span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -224,7 +436,7 @@
     <hr>
 
     <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Mayo Clinic 2013</p>
     </footer>
 </div> <!-- /container -->
 

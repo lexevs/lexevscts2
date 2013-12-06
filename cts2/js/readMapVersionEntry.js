@@ -13,10 +13,22 @@ $(document).ready(function(){
 
             $('#entity-btn').click(function(event) {
                 var value =  $("input#entity").val();
-                $.getJSON(entityURL.replace("${code}", value) + "?format=json&callback=?", function(mapJson){
-                    var metadata = getHTML(mapJson);
-                    $("#showMap").html(metadata);
-                }).fail(validateCode());
+//                $.getJSON(entityURL.replace("${code}", value) + "?format=json&callback=?", function(mapJson){
+//                    var metadata = getHTML(mapJson);
+//                    $("#showMap").html(metadata);
+//                }).fail(validateCode());
+                var urlMod = entityURL.replace("${code}", value) + "?format=json&callback=?"
+                $.jsonp({
+                    url: urlMod ,
+                    success: function(mapJson) {
+                        var metadata = getHTML(mapJson);
+                        $("#showMap").html(metadata);
+
+                    },
+                    error: function(d,msg) {
+                       validateCode();
+                        }
+                });
             });
 
     function getHTML(mapJson){
@@ -24,8 +36,8 @@ $(document).ready(function(){
         var fromName = mapJson.mapEntryMsg.entry.mapFrom.name;
         var fromNamespace = mapJson.mapEntryMsg.entry.mapFrom.namespace;
         var mapsetList =  mapJson.mapEntryMsg.entry.mapSetList;
-        var maptargetList =  mapsetList[0].mapTargetList
-        var toName = maptargetList[0].mapTo.name;;
+        var maptargetList =  mapsetList[0].mapTargetList;
+        var toName = maptargetList[0].mapTo.name;
         var toNamespace = maptargetList[0].mapTo.namespace;
         var html =
                 "<div class=\"alert\">" +
