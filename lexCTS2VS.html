@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="LexEVSCTS2.html">LexEVS CTS2</a>
+            <a class="navbar-brand" href="index.html">LexEVS CTS2</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -53,7 +53,7 @@
     <div class="container">
         <h1>CTS2 Value Sets in LexEVS</h1>
         <p>Try out the examples below or learn more about CTS2 and LexEVS</p>
-        <p><a class="btn btn-primary btn-lg" href="LexEVSCTS2.html" role="button">Learn more &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" href="index.html" role="button">Learn more &raquo;</a></p>
     </div>
 </div>
 
@@ -64,7 +64,7 @@
             <div class="well">
             <div class="example example-valuesets">
                 <h2 class="example-name">Value Set</h2>
-                <p class="example-description">This demonstrates and auto completion function on names of value sets in
+                <p class="example-description">This demonstrates an auto completion function on names of value sets in
                 the LexEVS terminology service</p>
                 <div class="demo">
                     <input class="typeahead" type="text" placeholder="valueset">
@@ -113,8 +113,10 @@ $('.example-valuesets .typeahead').typeahead({
     limit: 3
 });
                            </code></pre>
-                            <p>Here the "name" attribute keys into the html div example-valuesets and the "valueKey"
-                                refers to the matching name of the property returned from the REST call.</p>
+                            <p>Here the selector keys into the html div class "example-valuesets" and the input
+                                class "typeahead." The "valueKey" attribute matches the name of the property returned
+                                from the REST call.
+                            </p>
                             <h4>Resources</h4>
                             <p>All source and files are available at this
                                 <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>

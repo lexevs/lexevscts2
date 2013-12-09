@@ -37,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="LexEVSCTS2.html">LexEVS CTS2</a>
+            <a class="navbar-brand" href="index.html">LexEVS CTS2</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -54,7 +54,7 @@
     <div class="container">
         <h1>CTS2 Maps in LexEVS</h1>
         <p>Try out the examples below or learn more about CTS2 and LexEVS</p>
-        <p><a class="btn btn-primary btn-lg" href="LexEVSCTS2.html" role="button">Learn more &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" href="index.html" role="button">Learn more &raquo;</a></p>
     </div>
 </div>
 
@@ -111,8 +111,11 @@ $('.example-maps .typeahead').typeahead({
     limit: 3
 });
                            </code></pre>
-                            <p>Here the "name" attribute keys into the html div example-maps and the "valueKey"
-                                refers to the property matched against in the rest call.  </p>
+                            <p>
+                                Here the selector keys into the html div class "example-maps" and the input
+                                class "typeahead." The "valueKey" attribute matches the name of the property returned
+                                from the REST call.
+                            </p>
                             <h4>Resources</h4>
                             <p>All source and files are available at this
                                 <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
@@ -346,9 +349,9 @@ $('#entity-btn').click(function(event) {
                         <p>
                         Initialize a button and set up an event handler for it which kicks off an ajax-like call back
                         called jsonp specially adapted to handle the 404 errors that a bad request will cause.
-                        If the call is successful then it will call a method to generate an html table populated with
-                        the attributes of the returned JSON object, otherwise it will create an error message viewable
-                        by the user.
+                        If the call to the REST service is successful then it will call a method to generate an
+                        html table populated with the attributes of the returned JSON object, otherwise it will
+                        create an error message viewable by the user.
                         </p>
                         <h3>
                         Resources

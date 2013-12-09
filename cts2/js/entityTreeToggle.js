@@ -44,12 +44,9 @@ function getChildren(dataRef){
             var ref = childList[i].knownEntityDescriptionList[0].href;
             var icon = "<span>" +
                 "<i class=\"glyphicon glyphicon-plus-sign\"></i></span>";
-            if(childList.length == 0){
-                icon = "";}
             html = html +"<li>" +
                 "<a id=\"level1\" data-index='" + i + "' data-cts2ref='" + ref +
-                "' label-default=\"\" class=\"tree-toggle nav-header\" ><span>" +
-                "<i class=\"glyphicon glyphicon-plus-sign\"></i></span>"
+                "' label-default=\"\" class=\"tree-toggle nav-header\" >" + icon
                 + name + "</a></li>";
         }
         $("li#root").append(html + "</ul>");
