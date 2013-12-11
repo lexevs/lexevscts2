@@ -60,8 +60,11 @@
 
 <div class="container">
     <!-- Example row of columns -->
+
     <div class="row">
-        <div class="col-md-4">
+    <div class="col-md-8 ">
+    <div class="row">
+        <div class="col-md-6">
             <div class="well">
             <div class="example example-codesystems">
                 <h2 class="example-name">Code Systems</h2>
@@ -131,7 +134,7 @@ $('.example-codesystems .typeahead').typeahead({
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="well tree">
             <h2>Code System</h2>
             <p>Code system metadata tooltip displays code system metadata on cursor hover</p>
@@ -203,150 +206,9 @@ function getCodeSystemTableInfo(codeSystemJson) {
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         </div>
-        <div class="col-md-4">
-            <div class="well">
-                <h2>Entity Heirarchy Tree</h2>
-                <p>Displays the children of an entity on a mouse click</p>
-                <div id="tree-replace">
-                <ul id="rootul" class="nav">
-                    <li id ="root">
-                    <a id="label-root" data-cts2ref="" label-default="" ><span><i class="glyphicon glyphicon-plus-sign"></i></span></a>
-                    </li>
-                </ul>
-                </div>
-                <div style="padding-top: 75px">
-                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csTreeModal">View details &raquo;</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="csTreeModal" tabindex="-1" role="dialog" aria-labelledby="csTreeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-wide">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="csTreeModalLabel">How to Implement a CTS2 Generated Tree</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>This function is based on BootStrap, a Javascript Framework</p>
-                        <h4>HTML Required</h4>
-                        <pre>
-                            <code>
-&lt;div id=&quot;tree-replace&quot;&gt;
-    &lt;ul id=&quot;rootul&quot; class=&quot;nav&quot;&gt;
-        &lt;li id =&quot;root&quot;&gt;
-            &lt;a id=&quot;label-root&quot; data-cts2ref=&quot;&quot; label-default=&quot;&quot; &gt;
-            &lt;span&gt;&lt;i class=&quot;glyphicon glyphicon-plus-sign&quot;&gt;&lt;/i&gt;&lt;/span&gt;
-            &lt;/a&gt;
-         &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-                            </code>
-                        </pre>
-                        <h4>JavaScript</h4>
-                        <p>
-                            <i>
-                                <b>
-                                    This highly dynamic implementation in entityTreeToggle.js is too lengthy to reproduce
-                                    in its entirety here. Essentially it consists of a set of nested lists, each
-                                    dynamically generated from REST calls to a LexEVS CTS2 Service.
-                                </b>
-                            </i>
-                        </p>
-                        <pre>
-                            <code>
-function buildTreeInit(genURL){
-    $.getJSON(genURL + "?format=json&callback=?", function(data){
-        var rootName = data.entityDescriptionMsg.entityDescription.namedEntity.designationList[0].value;
-        var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
-        populateRoot(rootName);
-    $.when(addChildData(childUrl,"a#label-root")).then(buildLevelOne());
-    });
-}
-                            </code>
-                        </pre>
-
-                        <p>
-                            This widget keys off the "a" tag id reference "label-root" to make an immediate call to the
-                            REST service to populate the root based on a hard coded URL. It appends html to this "a" tag
-                            and has an event handler bound to it once it completes its processing of the JSON and stores
-                            a reference to the URL link to the children of this term. Reference methods here are
-                            <i>buildTreeInit()</i>, which calls <i>populateRoot()</i> adding the html.  <i>addChildData()</i>
-                            appends the invisible URL to the html. When this completes an event handler is added with
-                            the method <i>buildLevelOne()</i>. All other events wait for the next click on the root
-                            element.
-                        </p>
-                                                <pre>
-                            <code>
-function getChildren(dataRef){
-    $.getJSON(dataRef + "?format=json&callback=?", function(childData){
-        var childList = childData.entityDirectory.entryList;
-        var html = "&lt;ul id=&quot;level1&quot; &gt;";
-        for (var i in childList) {
-            var name = childList[i].knownEntityDescriptionList[0].designation;
-            var ref = childList[i].knownEntityDescriptionList[0].href;
-            var icon = "&lt;span&gt;" +
-            "&lt;i class=&quot;glyphicon glyphicon-plus-sign&quot;&gt;&lt;/i&gt;&lt;/span&gt;";
-            html = html +"&lt;li&gt;" +
-            "&lt;a id=\"level1\" data-index='" + i + "' data-cts2ref='" + ref +
-            "' label-default=&quot;&quot; class=&quot;tree-toggle nav-header&quot; &gt;&lt;span&gt;" +
-            icon + name + "&lt;/a>&lt;/li&gt;";
-        }
-        $("li#root").append(html + "&lt;/ul&gt;");
-    });
-    }
-                            </code>
-                        </pre>
-                        <p>
-                            On clicking the root element the <i>getChildren()</i> method is called and the hidden
-                            child URL is accessed, the response is processed and formatted into html list items, which
-                            are attached to the line item containing the root's "a" tag.
-                        </p>
-                        <pre>
-                            <code>
-
-function buildTree(dataRef, id, index){
-$.getJSON(dataRef + "?format=json&callback=?", function(data){
-    var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
-    $.getJSON(childUrl + "?format=json&callback=?", function(childData){
-        var childList = childData.entityDirectory.entryList;
-        var html=  "&lt;ul id=&quot;level2&quot; data-li_index='" + index + "' class=&quot;tree&quot; &gt;";
-        for (var i in childList) {
-            var name = childList[i].knownEntityDescriptionList[0].designation;
-            var ref = childList[i].knownEntityDescriptionList[0].href;
-            html= html +  "&lt;li&gt;&lt;a id=&quot;level2&quot; data-cts2ref='" + ref +
-            "' label-default=&quot;&quot;  &gt;"
-            + name + "&lt;/a&gt;&lt;/li&gt;";
-        }
-        var select = "a[id=" + id + "][data-index=" + index + "]";
-        $(select).append(html + "&lt;/ul&gt;");
-        });
-    });
-}
-                            </code>
-                        </pre>
-                        <p>
-                            The <i>buildLevelTwo()</i> method attaches event handlers to any existing children elements at
-                            any time.  On click the next level of children is created dynamically with the method
-                            <i>buildTree().</i>  Some adjustments will need to be made to adapt this method for further
-                            hierarchy extension.   All child elements can be toggled to appear and disappear.
-                        </p>
-                        <h4>Resources</h4>
-                        <p>All source and files are available at this
-                            <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
-                        <p>
-                            Pertinent files include the <span class="r">bootstrap3 folder</span>, <span class="r">
-                            entityTreeToggle.js</span>, and <span class="r">tree.css</span>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="well">
                 <div class="example example-entities">
                     <h2 class="example-name">Entity Search</h2>
@@ -415,7 +277,7 @@ $('.example-entities .typeahead').typeahead({
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="well">
                 <h2>Code Systems</h2>
                 <p>A dropdown list of all code systems in this service</p>
@@ -496,12 +358,149 @@ $(document).ready(
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         </div>
-        <div class="col-md-4">
-            <!--<div class="well">-->
-                <!--<div id="recur-tree">-->
-                <!--</div>-->
-            <!--</div>-->
+    </div>
+    </div>
+    <div class="col-md-4">
+        <div class="well">
+            <h2>Entity Heirarchy Tree</h2>
+            <p>Displays the children of an entity on a mouse click</p>
+            <div id="tree-replace">
+                <ul id="rootul" class="nav">
+                    <li id ="root">
+                        <a id="label-root" data-cts2ref="" label-default="" ><span><i class="glyphicon glyphicon-plus-sign"></i></span></a>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding-top: 75px">
+                <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csTreeModal">View details &raquo;</a></p>
+            </div>
         </div>
+        <div class="modal fade" id="csTreeModal" tabindex="-1" role="dialog" aria-labelledby="csTreeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-wide">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="csTreeModalLabel">How to Implement a CTS2 Generated Tree</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>This function is based on BootStrap, a Javascript Framework</p>
+                        <h4>HTML Required</h4>
+                        <pre>
+                            <code>
+&lt;div id=&quot;tree-replace&quot;&gt;
+    &lt;ul id=&quot;rootul&quot; class=&quot;nav&quot;&gt;
+        &lt;li id =&quot;root&quot;&gt;
+            &lt;a id=&quot;label-root&quot; data-cts2ref=&quot;&quot; label-default=&quot;&quot; &gt;
+                &lt;span&gt;&lt;i class=&quot;glyphicon glyphicon-plus-sign&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+                            </code>
+                        </pre>
+                        <h4>JavaScript</h4>
+                        <p>
+                            <i>
+                                <b>
+                                    This highly dynamic implementation in entityTreeToggle.js is too lengthy to reproduce
+                                    in its entirety here. Essentially it consists of a set of nested lists, each
+                                    dynamically generated from REST calls to a LexEVS CTS2 Service.
+                                </b>
+                            </i>
+                        </p>
+                        <pre>
+                            <code>
+function buildTreeInit(genURL){
+    $.getJSON(genURL + "?format=json&callback=?", function(data){
+        var rootName = data.entityDescriptionMsg.entityDescription.namedEntity.designationList[0].value;
+        var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
+        populateRoot(rootName);
+        $.when(addChildData(childUrl,"a#label-root")).then(buildLevelOne());
+    });
+}
+                            </code>
+                        </pre>
+
+                        <p>
+                            This widget keys off the "a" tag id reference "label-root" to make an immediate call to the
+                            REST service to populate the root based on a hard coded URL. It appends html to this "a" tag
+                            and has an event handler bound to it once it completes its processing of the JSON and stores
+                            a reference to the URL link to the children of this term. Reference methods here are
+                            <i>buildTreeInit()</i>, which calls <i>populateRoot()</i> adding the html.  <i>addChildData()</i>
+                            appends the invisible URL to the html. When this completes an event handler is added with
+                            the method <i>buildLevelOne()</i>. All other events wait for the next click on the root
+                            element.
+                        </p>
+                                                <pre>
+                            <code>
+function getChildren(dataRef){
+    $.getJSON(dataRef + "?format=json&callback=?", function(childData){
+        var childList = childData.entityDirectory.entryList;
+        var html = "&lt;ul id=&quot;level1&quot; &gt;";
+        for (var i in childList) {
+            var name = childList[i].knownEntityDescriptionList[0].designation;
+            var ref = childList[i].knownEntityDescriptionList[0].href;
+            var icon = "&lt;span&gt;" +
+            "&lt;i class=&quot;glyphicon glyphicon-plus-sign&quot;&gt;&lt;/i&gt;&lt;/span&gt;";
+            html = html +"&lt;li&gt;" +
+            "&lt;a id=\"level1\" data-index='" + i + "' data-cts2ref='" + ref +
+            "' label-default=&quot;&quot; class=&quot;tree-toggle nav-header&quot; &gt;&lt;span&gt;" +
+            icon + name + "&lt;/a>&lt;/li&gt;";
+        }
+    $("li#root").append(html + "&lt;/ul&gt;");
+    });
+}
+                            </code>
+                        </pre>
+                        <p>
+                            On clicking the root element the <i>getChildren()</i> method is called and the hidden
+                            child URL is accessed, the response is processed and formatted into html list items, which
+                            are attached to the line item containing the root's "a" tag.
+                        </p>
+                        <pre>
+                            <code>
+
+function buildTree(dataRef, id, index){
+    $.getJSON(dataRef + "?format=json&callback=?", function(data){
+    var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
+        $.getJSON(childUrl + "?format=json&callback=?", function(childData){
+            var childList = childData.entityDirectory.entryList;
+            var html=  "&lt;ul id=&quot;level2&quot; data-li_index='" + index + "' class=&quot;tree&quot; &gt;";
+            for (var i in childList) {
+                var name = childList[i].knownEntityDescriptionList[0].designation;
+                var ref = childList[i].knownEntityDescriptionList[0].href;
+                html= html +  "&lt;li&gt;&lt;a id=&quot;level2&quot; data-cts2ref='" + ref +
+                "' label-default=&quot;&quot;  &gt;"
+                + name + "&lt;/a&gt;&lt;/li&gt;";
+            }
+        var select = "a[id=" + id + "][data-index=" + index + "]";
+        $(select).append(html + "&lt;/ul&gt;");
+        });
+    });
+}
+                            </code>
+                        </pre>
+                        <p>
+                            The <i>buildLevelTwo()</i> method attaches event handlers to any existing children elements at
+                            any time.  On click the next level of children is created dynamically with the method
+                            <i>buildTree().</i>  Some adjustments will need to be made to adapt this method for further
+                            hierarchy extension.   All child elements can be toggled to appear and disappear.
+                        </p>
+                        <h4>Resources</h4>
+                        <p>All source and files are available at this
+                            <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                        <p>
+                            Pertinent files include the <span class="r">bootstrap3 folder</span>, <span class="r">
+                            entityTreeToggle.js</span>, and <span class="r">tree.css</span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
     </div>
     <hr>
 
