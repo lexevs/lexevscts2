@@ -1,3 +1,9 @@
+/**
+ * Created with IntelliJ IDEA.
+ * User: Scott Bauer
+ * Date: 11/13/13
+ * Time: 4:03 PM
+ */
 var CodeSystemListConfig = {
     serviceUrl: "http://bmidev4:5555/cts2/codesystemversions?format=json"
 };

@@ -1,9 +1,8 @@
 /**
  * Created with IntelliJ IDEA.
- * User: m029206
+ * User: Scott Bauer
  * Date: 11/15/13
  * Time: 11:58 AM
- * To change this template use File | Settings | File Templates.
  */
 $('.example-entities .typeahead').typeahead({
     name: 'entities',

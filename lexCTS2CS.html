@@ -122,7 +122,7 @@ $('.example-codesystems .typeahead').typeahead({
                         <p>All source and files are available at this
                             <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
                         <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>, <span class="r">codeSystemTypeahead.js</span>,
-                            <span class="r">typeahead.css</span>, <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
+                            <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -406,7 +406,7 @@ $('.example-entities .typeahead').typeahead({
                             <p>All source and files are available at this
                                 <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
                             <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>, <span class="r">entityTypeahead.js</span>,
-                                <span class="r">typeahead.css</span>, <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
+                                 <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -441,7 +441,8 @@ $('.example-entities .typeahead').typeahead({
                         <div class="modal-body">
                             <p>This function is based on a Javascript framework called BootStrap</p>
                             <h4> HTML Required</h4>
-                           <pre><code>
+                           <pre>
+                               <code>
 &lt;div class=&quot;btn-group&quot;&gt;
     &lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot;&gt;
         &lt;i class=&quot;icon-user icon-white&quot;&gt;&lt;/i&gt;All Code Systems&lt;/a&gt;
@@ -452,9 +453,11 @@ $('.example-entities .typeahead').typeahead({
         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-                           </code></pre>
+                            </code>
+                           </pre>
                             <h4>Javascript</h4>
-                           <pre><code>
+                           <pre>
+                               <code>
 var CodeSystemListConfig = {
     serviceUrl: "http://bmidev4:5555/cts2/codesystemversions?format=json"
     };
@@ -472,7 +475,8 @@ $(document).ready(
         }
     });
 });
-                           </code></pre>
+                                </code>
+                           </pre>
                             <p>
                                Here the class attribute "dropdown-menu" is a selector value allowing the list of
                                JSON derived objects to be processed into a set of html list items which are appended to

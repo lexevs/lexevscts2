@@ -1,9 +1,8 @@
 /**
  * Created with IntelliJ IDEA.
- * User: m029206
+ * User: Scott Bauer
  * Date: 11/12/13
  * Time: 9:23 AM
- * To change this template use File | Settings | File Templates.
  */
 $(document).ready(function(){
     var url = "http://bmidev4:5555/cts2/codesystemversions?matchvalue=${codeSystemName}&filtercomponent=resourceName&format=json&callback=?";
