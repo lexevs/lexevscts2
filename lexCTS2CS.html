@@ -41,7 +41,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active" ><a href="#">CodeSystems</a></li>
+                <li class="active" ><a href="#">Code Systems</a></li>
                 <li><a href="lexCTS2VS.html">Value Sets</a></li>
                 <li><a href="lexCTS2Map.html">Maps</a></li>
             </ul>
@@ -87,8 +87,16 @@
                             <h4 class="modal-title" id="csAutoModalLabel">How to Implement Coding Scheme Auto-complete</h4>
                         </div>
                         <div class="modal-body">
-                            <p>This function is based on a Javascript framework called BootStrap and a Bootstrap Plugin called Typeahead</p>
+                            <p>This function is based on a JavaScript framework called BootStrap and a Bootstrap Plugin called Typeahead.</p>
                             <h4> HTML Required</h4>
+                            <p>Import the css files by adding these lines to the head tag of the html</p>
+                            <pre>
+                                <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/typeahead.js-bootstrap.css&quot; rel=&quot;stylesheet&quot; &gt;
+                                </code>
+                            </pre>
+                            <p>Insert this code into the html body</p>
                            <pre>
                                <code>
 &lt;div class=&quot;example example-codesystems&quot;&gt;
@@ -100,7 +108,16 @@
 &lt;/div&gt;
                                 </code>
                            </pre>
-                           <h4>Javascript</h4>
+                            <p>Placed at the end of the html document so the pages load faster</p>
+                           <pre>
+                               <code>
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/typeahead.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/codeSystemTypeahead.js&quot;&gt;&lt;/script&gt;
+                               </code>
+                           </pre>
+                           <h4>JavaScript</h4>
                            <pre>
                                <code>
 $('.example-codesystems .typeahead').typeahead({
@@ -118,13 +135,14 @@ $('.example-codesystems .typeahead').typeahead({
  });
                             </code>
                            </pre>
-                        <p>Here the selector keys into the html div class "example-codesystems" and the input
+                        <p>The selector keys into the html div class "example-codesystems" and the input
                             class "typeahead." The "valueKey" attribute matches the name of the property returned
                             from the REST call.</p>
                         <h4>Resources</h4>
                         <p>All source and files are available at this
                             <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
-                        <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>, <span class="r">codeSystemTypeahead.js</span>,
+                        <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>,
+                            <span class="r">codeSystemTypeahead.js</span>,
                             <span class="r">typeahead.js-bootstrap.css</span>, and <span class="r">typeahead.js</span></p>
                         </div>
                         <div class="modal-footer">
@@ -140,7 +158,7 @@ $('.example-codesystems .typeahead').typeahead({
             <p>Code system metadata tooltip displays code system metadata on cursor hover</p>
             <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="NCI_Thesaurus-10.07e">NCI Thesaurus</a>
             <div style="padding-top: 75px">
-                <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csToolTipModal">View details &raquo;</a></p>
+                <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csToolTipModal">Get Code &raquo;</a></p>
             </div>
             </div>
             <div class="modal fade" id="csToolTipModal" tabindex="-1" role="dialog" aria-labelledby="csttModalLabel" aria-hidden="true">
@@ -151,12 +169,29 @@ $('.example-codesystems .typeahead').typeahead({
                             <h4 class="modal-title" id="csttModalLabel">How to Implement a CTS2 Coding Scheme ToolTip</h4>
                         </div>
                         <div class="modal-body">
-                            <p>This function is based on BootStrap, a Javascript Framework</p>
+                            <p>This function is based on BootStrap, a JavaScript Framework</p>
                             <h4> HTML Required</h4>
+                            <p>Import the css files by adding these lines to the head tag of the html</p>
+                            <pre>
+                                <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;;
+                                </code>
+                            </pre>
+                            <p>Insert this code into the html body</p>
                             <pre><code>
-&lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; id=&quot;tooltip&quot; data-cts=&quot;NCI_Thesaurus-10.07e&quot;&gt;NCI Thesaurus&lt;/a&gt;
+&lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; id=&quot;tooltip&quot;
+                                data-cts=&quot;NCI_Thesaurus-10.07e&quot;&gt;NCI Thesaurus&lt;/a&gt;
                             </code></pre>
-                            <h4>Javascript</h4>
+                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <pre>
+                                <code>
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/codeSystemTooltip.js&quot;&gt;&lt;/script&gt;
+                                </code>
+                            </pre>
+                            <h4>JavaScript</h4>
                             <pre><code>
 var url = "http://bmidev4:5555/cts2/codesystemversions?matchvalue=${codeSystemName}&filtercomponent=resourceName&format=json&callback=?";
 var csID =  $("#tooltip").attr("data-cts");
@@ -218,7 +253,7 @@ function getCodeSystemTableInfo(codeSystemJson) {
                     </div>
                 </div>
                 <div style="padding-top: 75px">
-                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csEntityModal">View details &raquo;</a></p>
+                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csEntityModal">Get Code &raquo;</a></p>
                 </div>
             </div>
             <div class="modal fade" id="csEntityModal" tabindex="-1" role="dialog" aria-labelledby="csEntityModalLabel" aria-hidden="true">
@@ -229,9 +264,19 @@ function getCodeSystemTableInfo(codeSystemJson) {
                             <h4 class="modal-title" id="cdEntityModalLabel">How to Implement an Entity AutoComplete</h4>
                         </div>
                         <div class="modal-body">
-                            <p>This function is based on a Javascript framework called BootStrap and a Bootstrap Plugin called Typeahead</p>
+                            <p>This function is based on a JavaScript framework called BootStrap and a Bootstrap Plugin called Typeahead</p>
                             <h4> HTML Required</h4>
-                           <pre><code>
+                            <p>Import the css files by adding these lines to the head tag of the html</p>
+                           <pre>
+                               <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/typeahead.js-bootstrap.css&quot; rel=&quot;stylesheet&quot; &gt;
+&lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;
+                               </code>
+                           </pre>
+                            <p>Insert this code into the html body</p>
+                           <pre>
+                               <code>
 &lt;div class=&quot;example example-entities&quot;&gt;
     &lt;h2 class=&quot;example-name&quot;&gt;Entity Search&lt;/h2&gt;
     &lt;p class=&quot;example-description&quot;&gt;Auto Complete search on entities from the NCI Thesaurus&lt;/p&gt;
@@ -239,8 +284,18 @@ function getCodeSystemTableInfo(codeSystemJson) {
         &lt;input class=&quot;typeahead&quot; type=&quot;text&quot; placeholder=&quot;Type some text&quot;&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-                           </code></pre>
-                            <h4>Javascript</h4>
+                           </code>
+                           </pre>
+                            <p>Placed at the end of the html document so the pages load faster</p>
+                           <pre>
+                               <code>
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/typeahead.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/entityTypeAhead.js&quot;&gt;&lt;/script&gt;
+                               </code>
+                           </pre>
+                            <h4>JavaScript</h4>
                            <pre><code>
 $('.example-entities .typeahead').typeahead({
     name: 'entities',
@@ -290,7 +345,7 @@ $('.example-entities .typeahead').typeahead({
                     </ul>
                 </div>
                 <div style="padding-top: 75px">
-                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csDDModal">View details &raquo;</a></p>
+                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csDDModal">Get Code &raquo;</a></p>
                 </div>
             </div>
             <div class="modal fade" id="csDDModal" tabindex="-1" role="dialog" aria-labelledby="csDDModalLabel" aria-hidden="true">
@@ -301,8 +356,16 @@ $('.example-entities .typeahead').typeahead({
                             <h4 class="modal-title" id="cdDDModalLabel">Implement a CTS2 Code Systems Drop Down List</h4>
                         </div>
                         <div class="modal-body">
-                            <p>This function is based on a Javascript framework called BootStrap</p>
+                            <p>This function is based on a JavaScript framework called BootStrap</p>
                             <h4> HTML Required</h4>
+                            <p>Import the css files by adding these lines to the head tag of the html</p>
+                            <pre>
+                                <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;
+                                </code>
+                            </pre>
+                            <p>Insert this code into the html body</p>
                            <pre>
                                <code>
 &lt;div class=&quot;btn-group&quot;&gt;
@@ -317,7 +380,16 @@ $('.example-entities .typeahead').typeahead({
 &lt;/div&gt;
                             </code>
                            </pre>
-                            <h4>Javascript</h4>
+                            <p>Placed at the end of the html document so the pages load faster</p>
+                           <pre>
+                               <code>
+&lt;!-- Placed at the end of the document so the pages load faster --&gt;
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/codeSystemDropDown.js&quot;&gt;&lt;/script&gt;
+                               </code>
+                           </pre>
+                            <h4>JavaScript</h4>
                            <pre>
                                <code>
 var CodeSystemListConfig = {
@@ -349,7 +421,8 @@ $(document).ready(
                             <h4>Resources</h4>
                             <p>All source and files are available at this
                                 <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
-                            <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span> and <span class="r">codeSystemDropDown.js</span></p>
+                            <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>,
+                                <span class="r">cts2.css</span>, and <span class="r">codeSystemDropDown.js</span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -372,7 +445,7 @@ $(document).ready(
                 </ul>
             </div>
             <div style="padding-top: 75px">
-                <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csTreeModal">View details &raquo;</a></p>
+                <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csTreeModal">Get Code &raquo;</a></p>
             </div>
         </div>
         <div class="modal fade" id="csTreeModal" tabindex="-1" role="dialog" aria-labelledby="csTreeModalLabel" aria-hidden="true">
@@ -383,8 +456,17 @@ $(document).ready(
                         <h4 class="modal-title" id="csTreeModalLabel">How to Implement a CTS2 Generated Tree</h4>
                     </div>
                     <div class="modal-body">
-                        <p>This function is based on BootStrap, a Javascript Framework</p>
+                        <p>This function is based on BootStrap, a JavaScript Framework</p>
                         <h4>HTML Required</h4>
+                        <p>Import the css files by adding these lines to the head tag of the html</p>
+                        <pre>
+                            <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/tree.css&quot; rel=&quot;stylesheet&quot;&gt;
+                            </code>
+                        </pre>
+                        <p>Insert this code into the html body</p>
                         <pre>
                             <code>
 &lt;div id=&quot;tree-replace&quot;&gt;
@@ -396,6 +478,15 @@ $(document).ready(
         &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
+                            </code>
+                        </pre>
+                        <p>Placed at the end of the html document so the pages load faster</p>
+                        <pre>
+                            <code>
+&lt;!-- Placed at the end of the document so the pages load faster --&gt;
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/entityTreeToggle.js&quot;&gt;&lt;/script&gt;
                             </code>
                         </pre>
                         <h4>JavaScript</h4>
