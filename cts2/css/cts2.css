@@ -41,3 +41,8 @@ span.r {
 span.rp {
     color:maroon;
 }
+
+.tooltip.in {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}

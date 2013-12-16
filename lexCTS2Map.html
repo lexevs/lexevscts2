@@ -422,12 +422,54 @@ $('#entity-btn').click(function(event) {
                     </code>
                     </pre>
                         <p>
-                        Initialize a button and set up an event handler for it which kicks off an ajax-like call back
-                        called jsonp specially adapted to handle the 404 errors that a bad request will cause.
-                        If the call to the REST service is successful then it will call a method to generate an
-                        html table populated with the attributes of the returned JSON object, otherwise it will
-                        create an error message viewable by the user.
+                            Initialize a button and set up an event handler for it which kicks off an ajax-like call back
+                            called jsonp specially adapted to handle the 404 errors that a bad request will cause.
+                            If the call to the REST service is successful then it will call a method to generate an
+                            html table populated with the attributes of the returned JSON object, otherwise it will
+                            create an error message viewable by the user.
                         </p>
+                    <pre>
+                        <code>
+function getHTML(mapJson){
+    var map = mapJson.mapEntryMsg.entry.assertedBy.map.content;
+    var fromName = mapJson.mapEntryMsg.entry.mapFrom.name;
+    var fromNamespace = mapJson.mapEntryMsg.entry.mapFrom.namespace;
+    var mapsetList =  mapJson.mapEntryMsg.entry.mapSetList;
+    var maptargetList =  mapsetList[0].mapTargetList;
+    var toName = maptargetList[0].mapTo.name;
+    var toNamespace = maptargetList[0].mapTo.namespace;
+    var html =
+        "&lt;div class=&quot;alert&quot;&gt;" +
+        "&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-hidden=&quot;true&quot;&gt;×&lt;/button&gt;" +
+        "&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;" +
+        "&lt;th colspan=&quot;2&quot; &gt; Map Entity Metadata &lt;/th&gt;" +
+        "&lt;tr>&lt;td &gt;map: &lt;/td&gt;&lt;td&gt;" + map + "&lt;/td&gt;&lt;/tr&gt;" +
+        "&lt;tr>&lt;td &gt;From vocabulary: &lt;/td&gt;&lt;td&gt;" + fromNamespace + "&lt;/td&gt;&lt;/tr&gt;" +
+        "&lt;tr>&lt;td &gt;From code: &lt;/td&gt;&lt;td&gt;" + fromName + "&lt;/td&lt;/tr&gt;" +
+        "&lt;tr>&lt;td &gt;To vocabulary: &lt;/td&gt;&lt;td&gt;" + toNamespace + "&lt;/td&gt;&lt;/tr&gt;" +
+        "&lt;tr>&lt;td &gt;to code: &lt;/td&gt;&lt;td&gt;" + toName + "&lt;/td&gt;&lt;/tr&gt;" +
+        "&lt;/table&gt;"
+        +   "&lt;/div&gt;";
+    return html;
+}
+                        </code>
+                    </pre>
+                        <p>Create values by drilling down into the jsonp object map and build an html table to display
+                            the values</p>
+                    <pre>
+                        <code>
+function validateCode(){
+    console.log("fail!");
+    ("#showMap").html("&lt;div class=&quot;alert alert-warning&quot;&gt;" +
+    "&lt;strong&gt;This is not a valid NCIt code!!!&lt;/strong&gt;" +
+    "&lt;/div&gt;");
+}
+                        </code>
+                    </pre>
+                     <p>
+                         This function is called when no values are returned from the REST call.  It displays a informative
+                         end user message.
+                     </p>
                         <h3>
                         Resources
                         </h3>
@@ -437,7 +479,6 @@ $('#entity-btn').click(function(event) {
                         <p>Files pertinent to this implementation are the <span class="r">bootstrap3 folder</span>,
                             <span class="r">cts2.css</span>, <span class="r">jquery.jsonp.js</span> and
                             <span class="r">readMapVersionEntry.js</span></p>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
