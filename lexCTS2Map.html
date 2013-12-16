@@ -87,7 +87,18 @@
                         <div class="modal-body">
                             <p>This function is based on a JavaScript framework called BootStrap and a Bootstrap Plugin called Typeahead</p>
                             <h4> HTML Required</h4>
-                           <pre><code>
+                            <p>Import the css files by adding these lines to the head tag of the html</p>
+                            <pre>
+                                <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;bootstrap3/css/jumbotron.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/typeahead.js-bootstrap.css&quot; rel=&quot;stylesheet&quot; &gt;
+&lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;
+                                </code>
+                            </pre>
+                            <p>Insert this code into the html body</p>
+                           <pre>
+                               <code>
 &lt;div class=&quot;example example-maps&quot;&gt;
     &lt;h2 class=&quot;example-name&quot;&gt;Maps&lt;/h2&gt;
     &lt;p class=&quot;example-description&quot;&gt;Auto Complete&lt;/p&gt;
@@ -95,7 +106,17 @@
         &lt;input class=&quot;typeahead&quot; type=&quot;text&quot; placeholder=&quot;map&quot;&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-                           </code></pre>
+                              </code>
+                           </pre>
+                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <pre>
+                                <code>
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/typeahead.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/mapTypeahead.js&quot;&gt;&lt;/script&gt;
+                                </code>
+                            </pre>
                             <h4>JavaScript</h4>
                            <pre><code>
 $('.example-maps .typeahead').typeahead({
@@ -148,11 +169,28 @@ $('.example-maps .typeahead').typeahead({
                         <div class="modal-body">
                             <p>This function is based on BootStrap, a JavaScript Framework</p>
                             <h4> HTML Required</h4>
+                            <p>Import the css files by adding these lines to the head tag of the html</p>
+                            <pre>
+                                <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;bootstrap3/css/jumbotron.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;
+                                </code>
+                            </pre>
+                            <p>Insert this code into the html body</p>
                             <pre>
                             <code>
 &lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; id=&quot;tooltip&quot;
 data-cts=&quot;SNOMEDCT_2010_01_31_TO_ICD9CM_2010-20100131&quot;&gt;SNOMEDCT_TO_ICD9CM&lt;/a&gt;
                             </code>
+                            </pre>
+                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <pre>
+                                <code>
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/mapTooltip.js&quot;&gt;&lt;/script&gt;
+                                </code>
                             </pre>
                             <h4>JavaScript</h4>
                             <pre>
@@ -234,7 +272,17 @@ $(document).ready(function(){
                     <div class="modal-body">
                         <p>This function is based on a JavaScript framework called BootStrap</p>
                         <h4> HTML Required</h4>
-                           <pre><code>
+                        <p>Import the css files by adding these lines to the head tag of the html</p>
+                        <pre>
+                            <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;bootstrap3/css/jumbotron.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;
+                            </code>
+                        </pre>
+                        <p>Insert this code into the html body</p>
+                           <pre>
+                               <code>
 &lt;div class=&quot;btn-group&quot;&gt;
     &lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot;&gt;
         &lt;i class=&quot;icon-user icon-white&quot;&gt;&lt;/i&gt;All Maps
@@ -247,7 +295,16 @@ $(document).ready(function(){
         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;
-                           </code></pre>
+                              </code>
+                           </pre>
+                        <p>Placed at the end of the html document so the pages load faster</p>
+                        <pre>
+                            <code>
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/mapDropDown.js&quot;&gt;&lt;/script&gt;
+                            </code>
+                        </pre>
                         <h4>JavaScript</h4>
                            <pre><code>
 var CodeSystemListConfig = {
@@ -314,6 +371,15 @@ $(document).ready(
                     </div>
                     <div class="modal-body">
                     <h3>HTML Required</h3>
+                        <p>Import the css files by adding these lines to the head tag of the html</p>
+                        <pre>
+                            <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;bootstrap3/css/jumbotron.css&quot; rel=&quot;stylesheet&quot;&gt;t;
+&lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;
+                            </code>
+                        </pre>
+                        <p>Insert this code into the html body</p>
                     <pre>
                     <code>
 &lt;div id=&quot;showMap&quot;&gt;&lt;/div&gt;
@@ -324,6 +390,15 @@ $(document).ready(
     &lt;/div&gt;
 &lt;/div&gt;
                     </code>
+                    </pre>
+                        <p>Placed at the end of the html document so the pages load faster</p>
+                    <pre>
+                       <code>
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/readMapVersionEntry.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/jquery.jsonp.js&quot;&gt;&lt;/script&gt;
+                       </code>
                     </pre>
                     <h3>JavaScript</h3>
                     <pre>
