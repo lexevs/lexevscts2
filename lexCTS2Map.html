@@ -253,7 +253,7 @@ $(document).ready(function(){
                     <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i>All Maps</a>
                     <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Maps</a></li>
+                        <li><a href="#"><b>Maps</b></a></li>
                         <li class="divider"></li>
                     </ul>
                 </div>
@@ -382,13 +382,13 @@ $(document).ready(
                         <p>Insert this code into the html body</p>
                     <pre>
                     <code>
-&lt;div id=&quot;showMap&quot;&gt;&lt;/div&gt;
-    &lt;div style=&quot;padding-top: 75px&quot;&gt;
-        &lt;p&gt;&lt;a class=&quot;btn btn-info&quot; href=&quot;#&quot; role=&quot;button&quot;
-        data-toggle=&quot;modal&quot; data-target=&quot;#mapEntityModal&quot;&gt;
-        View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
-    &lt;/div&gt;
+&lt;div class=&quot;input-group&quot;&gt;
+    &lt;span class=&quot;input-group-btn&quot; &gt;&lt;button class=&quot;btn btn-default&quot; type=&quot;button&quot;
+    id=&quot;entity-btn&quot;&gt;Go!&lt;/button&gt;
+    &lt;/span&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;entity&quot;&gt;
 &lt;/div&gt;
+&lt;div id=&quot;showMap&quot;&gt;&lt;/div&gt;
                     </code>
                     </pre>
                         <p>Placed at the end of the html document so the pages load faster</p>

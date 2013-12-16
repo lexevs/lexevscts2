@@ -4,13 +4,9 @@
  * Date: 11/13/13
  * Time: 4:03 PM
  */
-var CodeSystemListConfig = {
-    serviceUrl: "http://bmidev4:5555/cts2/codesystemversions?format=json"
-};
+    $(function() {
 
-    $(document).ready(
-        function() {
-            var url = CodeSystemListConfig.serviceUrl;
+            var url = "http://bmidev4:5555/cts2/codesystemversions?format=json";
             $.getJSON(url + "&callback=?", function (data) {
                 for (var i in data.codeSystemVersionCatalogEntryDirectory.entryList) {
                     var entry = data.codeSystemVersionCatalogEntryDirectory.entryList[i];
