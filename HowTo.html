@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <!--<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">-->
 
-    <title>CTS2 Code Systems</title>
+    <title>How To Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap3/css/bootstrap.css" rel="stylesheet">
@@ -69,7 +69,11 @@
 <!DOCTYPE html>
 &lt;html&gt;
     &lt;head&gt;
-        &lt;title&gt;MyJSPage<&lt;/title&gt;
+        &lt;!-- meta tags for bootstrap --&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot;
+        content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        &lt;title&gt;MyJSPage&lt;/title&gt;
     &lt;/head&gt;
     &lt;body&gt;
 
@@ -84,31 +88,36 @@
                         <code>
 &lt;head&gt;
     &lt;title&gt;MyJsPage&lt;/title&gt;
-    &lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;bootstrap3/css/bootstrap.css&quot;
+    rel=&quot;stylesheet&quot;&gt;
     &lt;link href=&quot;cts2/css/cts2.css&quot; rel=&quot;stylesheet&quot;&gt;
 &lt;/head&gt;
                         </code>
                     </pre>
                 </li>
                 <li>
-                   Add html snippet to the page body
+                   Add the example html snippet to the page body
                     <pre>
                         <code>
 &lt;div class=&quot;btn-group&quot;&gt;
     &lt;a class=&quot;btn btn-primary&quot; href=&quot;#&quot;&gt;
     &lt;i class=&quot;icon-user icon-white&quot;&gt;&lt;/i&gt;All Code Systems&lt;/a&gt;
-    &lt;a class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;
-    href=&quot;#&quot;&gt;&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;a class=&quot;btn btn-primary dropdown-toggle&quot;
+    data-toggle=&quot;dropdown&quot; href=&quot;#&quot;&gt;
+        &lt;span class=&quot;caret&quot;&gt;
+        &lt;/span&gt;
+    &lt;/a&gt;
     &lt;ul class=&quot;dropdown-menu&quot; id=&quot;codesystems&quot;&gt;
         &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;b&gt;Code Systems&lt;/b&gt;&lt;/a&gt;&lt;/li&gt;
         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
-    &lt;/ul&gt;<br/>
+    &lt;/ul&gt;
 &lt;/div&gt;
                         </code>
                     </pre>
                 </li>
                 <li>
-                   Import the JavaScript files last to improve page loading performance.
+                   Import the JavaScript files last to improve page loading performance.  (Just before the closing body
+                    tag.)
                     <pre>
                         <code>
 &lt;script
@@ -129,10 +138,10 @@ src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;
                 <h2>2. Get the Files</h2>
                 <p>
                     Clone the repository or download the zip file from the <a href="https://github.com/lexevs/lexevscts2">
-                    lexevscts2</a> GitHub repository.
+                    LexEVS CTS2 examples</a> GitHub repository.
                 </p>
                 <p>
-                    Move the needed file items to new directory
+                    Move the needed file items to a new directory
                     <img src="images/DirectoryStructure.png" alt="File Structure"> </img>
 
 

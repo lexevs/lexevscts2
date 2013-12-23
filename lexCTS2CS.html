@@ -70,7 +70,7 @@
             <div class="example example-codesystems">
                 <h2 class="example-name">Code Systems</h2>
                 <p class="example-description">Providing an auto-completion function for code system designations.
-                Start typing a word and a list of matching code systems will appear</p>
+                Start typing a word and a list of matching code systems will appear. Example: Start typing "ncit"</p>
                 <div class="demo">
                     <input class="typeahead" type="text" placeholder="code system">
                 </div>
@@ -180,10 +180,14 @@ $('.example-codesystems .typeahead').typeahead({
                                 </code>
                             </pre>
                             <p>Insert this code into the html body</p>
-                            <pre><code>
-&lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; id=&quot;tooltip&quot;
+                            <pre>
+                                <code>
+&lt;div class=&quot;col-lg-6&quot;&gt;
+&lt;a href=&quot;#&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;tooltip&quot;  id=&quot;tooltip&quot;
                                 data-cts=&quot;NCI_Thesaurus-10.07e&quot;&gt;NCI Thesaurus&lt;/a&gt;
-                            </code></pre>
+&lt;/div&gt;
+                                </code>
+                            </pre>
                             <p>Placed at the end of the html document so the pages load faster</p>
                             <pre>
                                 <code>
@@ -248,7 +252,8 @@ function getCodeSystemTableInfo(codeSystemJson) {
             <div class="well">
                 <div class="example example-entities">
                     <h2 class="example-name">Entity Search</h2>
-                    <p class="example-description">Auto Complete search on entities from the NCI Thesaurus</p>
+                    <p class="example-description">Auto Complete search on entities from the NCI Thesaurus.  Example:
+                    Start typing "swelling"</p>
                     <div class="demo">
                         <input class="typeahead" type="text" placeholder="Type some text">
                     </div>
@@ -384,7 +389,6 @@ $('.example-entities .typeahead').typeahead({
                             <p>Placed at the end of the html document so the pages load faster</p>
                            <pre>
                                <code>
-&lt;!-- Placed at the end of the document so the pages load faster --&gt;
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;cts2/js/codeSystemDropDown.js&quot;&gt;&lt;/script&gt;
@@ -415,7 +419,7 @@ $(document).ready(
                             <p>
                                Here the class attribute "dropdown-menu" is a selector value allowing the list of
                                JSON derived objects to be processed into a set of html list items which are appended to
-                               an html list a created by bootstrap functions. Drop down scrolling is controlled in the
+                               an html list created by bootstrap functions. Drop down scrolling is controlled in the
                                 cts.css with an overflow designation. We define more values than what is
                                displayed to the end user to show some of the available objects.
                             </p>
@@ -484,7 +488,6 @@ $(document).ready(
                         <p>Placed at the end of the html document so the pages load faster</p>
                         <pre>
                             <code>
-&lt;!-- Placed at the end of the document so the pages load faster --&gt;
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;cts2/js/entityTreeToggle.js&quot;&gt;&lt;/script&gt;
