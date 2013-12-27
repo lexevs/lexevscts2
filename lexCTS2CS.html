@@ -109,7 +109,7 @@
 &lt;/div&gt;
                                 </code>
                            </pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                            <pre>
                                <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -188,7 +188,7 @@ $('.example-codesystems .typeahead').typeahead({
 &lt;/div&gt;
                                 </code>
                             </pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                             <pre>
                                 <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -226,7 +226,7 @@ function getCodeSystemTableInfo(codeSystemJson) {
                             </code></pre>
                             <p>
                                The REST URL for the code system is completed by a hidden data input named "data-cts"
-                               The <i>getJson()</i> method returns JSON formatted text from the service with is parsed
+                               The <i>getJson()</i> method returns JSON formatted text from the service which is parsed
                                automatically into jsonp.  The resulting objects can be referenced for code system
                                metadata values after which some html is formatted around them as a table and passed
                                back to the tooltip where it is shown on mouse hover.
@@ -292,7 +292,7 @@ function getCodeSystemTableInfo(codeSystemJson) {
 &lt;/div&gt;
                            </code>
                            </pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                            <pre>
                                <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -386,7 +386,7 @@ $('.example-entities .typeahead').typeahead({
 &lt;/div&gt;
                             </code>
                            </pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                            <pre>
                                <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -420,8 +420,8 @@ $(document).ready(
                                Here the class attribute "dropdown-menu" is a selector value allowing the list of
                                JSON derived objects to be processed into a set of html list items which are appended to
                                an html list created by bootstrap functions. Drop down scrolling is controlled in the
-                                cts.css with an overflow designation. We define more values than what is
-                               displayed to the end user to show some of the available objects.
+                               cts.css with an overflow designation. In this code example we define more values than what
+                               is displayed to the end user to show some of the available objects.
                             </p>
                             <h4>Resources</h4>
                             <p>All source and files are available at this
@@ -485,7 +485,7 @@ $(document).ready(
 &lt;/div&gt;
                             </code>
                         </pre>
-                        <p>Placed at the end of the html document so the pages load faster</p>
+                        <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                         <pre>
                             <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -520,7 +520,7 @@ function buildTreeInit(genURL){
                             This widget keys off the "a" tag id reference "label-root" to make an immediate call to the
                             REST service to populate the root based on a hard coded URL. It appends html to this "a" tag
                             and has an event handler bound to it once it completes its processing of the JSON and stores
-                            a reference to the URL link to the children of this term. Reference methods here are
+                            a reference to the URL link for the children of this term. Reference methods here are
                             <i>buildTreeInit()</i>, which calls <i>populateRoot()</i> adding the html.  <i>addChildData()</i>
                             appends the invisible URL to the html. When this completes an event handler is added with
                             the method <i>buildLevelOne()</i>. All other events wait for the next click on the root
@@ -576,10 +576,11 @@ function buildTree(dataRef, id, index){
                             </code>
                         </pre>
                         <p>
-                            The <i>buildLevelTwo()</i> method attaches event handlers to any existing children elements at
-                            any time.  On click the next level of children is created dynamically with the method
-                            <i>buildTree().</i>  Some adjustments will need to be made to adapt this method for further
-                            hierarchy extension.   All child elements can be toggled to appear and disappear.
+                            The <i>buildLevelTwo()</i> method attaches event handlers to any existing children elements
+                            any time they are created.  On click the next level of children is created dynamically with
+                            the method <i>buildTree().</i>  Some adjustments will need to be made to adapt this method
+                            for further hierarchy extension.   All child elements can be toggled to appear and
+                            disappear.
                         </p>
                         <h4>Resources</h4>
                         <p>All source and files are available at this

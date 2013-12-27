@@ -103,7 +103,7 @@
     &lt;/div&gt;
 &lt;/div&gt;
                            </code></pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                             <pre>
                                 <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -185,7 +185,7 @@ $('.example-valuesets .typeahead').typeahead({
 &lt;/div&gt;
                             </code>
                             </pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                             <pre>
                                 <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -227,7 +227,7 @@ $(document).ready(function(){
                             </pre>
                             <p>
                                 The REST URL for the value set is completed by a hidden data input named "data-cts"
-                                The <i>getJson()</i> method returns JSON formatted text from the service with is parsed
+                                The <i>getJson()</i> method returns JSON formatted text from the service which is parsed
                                 automatically into jsonp.  The resulting objects can be referenced for value set
                                 metadata values after which some html is formatted around them and passed back to the
                                 tooltip to be shown on mouse hover.
@@ -296,7 +296,7 @@ $(document).ready(function(){
     &lt;/ul&gt;
 &lt;/div&gt;
                            </code></pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                           <pre>
                               <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -319,7 +319,7 @@ $(function() {
 });
                            </code></pre>
                             <p>
-                                Here the class attribute "dropdown-menu" keys is a selector value allowing the list of
+                                Here the class attribute "dropdown-menu" is a selector value allowing the list of
                                 JSON derived objects to be processed into a set of html attributes which are appended to
                                 an html list created by bootstrap functions. Drop down scrolling is controlled by an
                                 overflow designation in the cts2.css file.
@@ -339,9 +339,9 @@ $(function() {
         </div>
     </div>
     <div class="row">
-        <!--<div class="col-md-3">-->
+        <div class="col-md-4">
 
-        <!--</div>-->
+        </div>
         <div class="col-md-4">
             <div class="well">
                 <h2>Value Set Entities</h2>
@@ -391,7 +391,7 @@ $(function() {
     &lt;/ul&gt;
 &lt;/div&gt;
                            </code></pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                            <pre>
                                <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -419,7 +419,7 @@ $(document).ready(
 });
                            </code></pre>
                             <p>
-                                Here the class attribute "dropdown-menu" keys is a selector value allowing the list of
+                                Here the class attribute "dropdown-menu" is a selector value allowing the list of
                                 JSON derived objects to be processed into a set of html attributes which are appended to
                                 an html list a created by bootstrap functions.  Drop down scrolling is controlled in the
                                 cts.css with an overflow designation.
@@ -437,7 +437,7 @@ $(document).ready(
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
 
         </div>
     </div>
@@ -459,5 +459,6 @@ $(document).ready(
 <script src="cts2/js/valueSetTooltip.js"></script>
 <script src="cts2/js/valueSetDropDown.js"></script>
 <script src="cts2/js/vsEntitiesDropDown.js"></script>
+<script src="cts2/js/HeightAdjust.js"></script></li>
 </body>
 </html>

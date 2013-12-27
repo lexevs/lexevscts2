@@ -108,7 +108,7 @@
 &lt;/div&gt;
                               </code>
                            </pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                             <pre>
                                 <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -188,7 +188,7 @@ $('.example-maps .typeahead').typeahead({
 &lt;/div&gt;
                             </code>
                             </pre>
-                            <p>Placed at the end of the html document so the pages load faster</p>
+                            <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                             <pre>
                                 <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -229,7 +229,7 @@ $(document).ready(function(){
                             </pre>
                             <p>
                                 The REST URL for the map is completed by a hidden data input named "data-cts"
-                                The <i>getJson()</i> method returns JSON formatted text from the service with is parsed
+                                The <i>getJson()</i> method returns JSON formatted text from the service which is parsed
                                 automatically into jsonp.  The resulting objects can be referenced for map
                                 metadata values after which some html is formatted around them and passed back to the
                                 tooltip to be shown on mouse hover.
@@ -300,7 +300,7 @@ $(document).ready(function(){
 &lt;/div&gt;
                               </code>
                            </pre>
-                        <p>Placed at the end of the html document so the pages load faster</p>
+                        <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                         <pre>
                             <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -393,7 +393,7 @@ $(document).ready(
 &lt;div id=&quot;showMap&quot;&gt;&lt;/div&gt;
                     </code>
                     </pre>
-                        <p>Placed at the end of the html document so the pages load faster</p>
+                        <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
                     <pre>
                        <code>
 &lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
@@ -469,8 +469,8 @@ function validateCode(){
                         </code>
                     </pre>
                      <p>
-                         This function is called when no values are returned from the REST call.  It displays a informative
-                         end user message.
+                         This function is called when no values are returned from the REST call.  It displays an
+                         end user message that the code is not valid.
                      </p>
                         <h3>
                         Resources
