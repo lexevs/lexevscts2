@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>CTS2 Pagination</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap3/css/bootstrap.css" rel="stylesheet">
+    <link href="cts2/css/typeahead.js-bootstrap.css" rel="stylesheet" >
+    <!-- Custom styles for this template -->
+    <link href="bootstrap3/css/jumbotron.css" rel="stylesheet">
+    <link href="cts2/css/cts2.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">LexEVS CTS2</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="HowTo.html">How To</a></li>
+                <li><a href="lexCTS2CS.html">Code Systems</a></li>
+                <li><a href="lexCTS2VS.html">Value Sets</a></li>
+                <li><a href="lexCTS2Map.html">Maps</a></li>
+                <li class="active"><a href="lexCTS2Paginate.html">Paginate</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>Pagination of Entry Lists</h1>
+        <p>Try out the example below or learn more about CTS2 and LexEVS</p>
+        <p><a class="btn btn-primary btn-lg" href="index.html" role="button">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <div class="well">
+                <h2>Page Through Entry List</h2>
+                <p>
+                Entry Lists can number in the hundreds of thousands. While it's best to narrow with a query, a user
+                still may want to page through a longer query result.  CTS2 provides pagination control via URL links
+                to previous and next page batches.  Below we can page through the NCI Thesaurus entry list of entities.
+                </p>
+                <div class="show_hide">
+                    <ul class="list-group">
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default cts2prev">&laquo; Previous</button>
+                    <button type="button" class="btn btn-default cts2next">Next &raquo;</button>
+                </div>
+                <div style="padding-top: 75px">
+                    <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#pageModal">Get Code &raquo;</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+    <div class="modal fade" id="pageModal" tabindex="-1" role="dialog" aria-labelledby="csttModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-wide">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="csttModalLabel">How to Implement a CTS2 Coding Scheme ToolTip</h4>
+                </div>
+                <div class="modal-body">
+                    <p>This function is based on BootStrap, a JavaScript Framework</p>
+                    <h4> HTML Required</h4>
+                    <p>Import the css files by adding these lines to the head tag of the html</p>
+                            <pre>
+                                <code>
+&lt;link href=&quot;bootstrap3/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;
+                                </code>
+                            </pre>
+                    <p>Insert this code into the html body</p>
+                            <pre>
+                                <code>
+&lt;div class=&quot;show_hide&quot;&gt;
+    &lt;ul class=&quot;list-group&quot;&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;btn-group&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-default
+    cts2prev&quot;&gt;&amp;laquo; Previous&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-default
+    cts2next&quot;&gt;Next &amp;raquo;&lt;/button&gt;
+&lt;/div&gt;
+                                </code>
+                            </pre>
+                    <p>Placed at the end of the html document before the closing body tag so the pages load faster</p>
+                            <pre>
+                                <code>
+&lt;script src=&quot;https://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;bootstrap3/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;cts2/js/paginate.js&quot;&gt;&lt;/script&gt;
+                                </code>
+                            </pre>
+                    <h4>JavaScript</h4>
+                            <pre>
+                                <code>
+var url = "http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.07e/entities?maxtoreturn=5&format=json&callback=?";
+$.getJSON(url, function(cts2JSON) {
+    nextURL = cts2JSON.entityDirectory.next;
+    for(i in cts2JSON.entityDirectory.entryList){
+        var entity = cts2JSON.entityDirectory.entryList[i];
+        var code = entity.name.name;
+        var name = entity.knownEntityDescriptionList[0].designation;
+        if(name == null) {
+            name = "MISSING"
+        }
+        $("ul.list-group").append("&lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;#&quot;&lt;code: "
+        "&lt;ul class=&quot;list-group&quot;&gt;&lt;/ul&gt;"+ code + "   name: " + name + "&lt;/a&gt;&lt;/li&gt;");
+        }
+ });
+                                </code>
+                            </pre>
+                    <p>
+This resolves the first set of entity list entries and sets a global nextURL variable for paging
+to the next set of entries
+                    </p>
+                    <pre>
+                        <code>
+$("div.btn-group button.cts2next").on("click", function(){
+    $.when($("div.show_hide").html("&lt;ul class=&quot;list-group&quot;&gt;&lt;/ul&gt;")).then(
+    $.getJSON(nextURL + "&callback=?", function(cts2Next) {
+        nextURL = cts2Next.entityDirectory.next;
+        previousURL = cts2Next.entityDirectory.prev ;
+        for(i in cts2Next.entityDirectory.entryList){
+            var entity = cts2Next.entityDirectory.entryList[i];
+            var code = entity.name.name;
+            var name = entity.knownEntityDescriptionList[0].designation;
+            if(name == null) {
+                name = "MISSING"
+            }
+        $("ul.list-group").append("&lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;#&quot;&lt;code: "
+        + code + "   name: " + name + "&lt;/a&gt;&lt;/li&gt;");
+        }
+        })
+    );
+})
+                        </code>
+                    </pre>
+                    <p>
+An event listener is created on the "Next" button, where upon click there is a REST call to pick up and display the
+next set of entities by replacing the html in the "show_hide" div. Global URL variables are set or reset for the next and
+previous set of entries at this time.
+                    </p>
+                    <pre>
+                        <code>
+$("div.btn-group button.cts2prev").on("click", function(){
+    $.when($("div.show_hide").html("&lt;ul class=&quot;list-group&quot;&gt;&lt;/ul&gt;")).then(
+    $.getJSON(previousURL + "&callback=?", function(cts2Next) {
+    nextURL = cts2Next.entityDirectory.next;
+    previousURL = cts2Next.entityDirectory.prev ;
+    for(i in cts2Next.entityDirectory.entryList){
+        var entity = cts2Next.entityDirectory.entryList[i];
+        var code = entity.name.name;
+        var name = entity.knownEntityDescriptionList[0].designation;
+        if(name == null) {
+            name = "MISSING"
+        }
+        $("ul.list-group").append("&lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;#&quot;&lt;code: "
+        + code + "   name: " + name + "&lt;/a&gt;&lt;/li&gt;");
+        }
+        })
+    );
+})
+                        </code>
+                    </pre>
+                    <p>
+The function for getting the previous entity set is a mirror of the next function but cued to the "Prev" button and the
+"previousURL".
+                    </p>
+                    <h4>Resources</h4>
+                    <p>All source and files are available at this
+                        <a href="https://github.com/lexevs/lexevscts2">github repository</a></p>
+                    <p>
+                        Required files include the <span class="r">bootstrap3 folder</span> and
+                        <span class="r">paginate.js</span>.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="bootstrap3/js/bootstrap.min.js"></script>
+<script src="cts2/js/paginate.js"></script>
+</body>
+</html>
