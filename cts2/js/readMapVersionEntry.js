@@ -20,7 +20,7 @@ $(document).ready(function(){
                         var metadata = getHTML(mapJson);
                         $("#showMap").html(metadata);
                     },
-                    error: function(d,msg) {
+                    error: function() {
                        validateCode();
                         }
                 });
