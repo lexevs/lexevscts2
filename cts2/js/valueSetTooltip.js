@@ -6,7 +6,7 @@
  */
 
 $(document).ready(function(){
-    var url = "http://bmidev4:5555/cts2/resolvedvaluesets?matchvalue=${valueSetName}&filtercomponent=resourceName&format=json&callback=?";
+    var url = "http://lexevscts2-stage.nci.nih.gov/lexevscts2/resolvedvaluesets?matchvalue=${valueSetName}&filtercomponent=resourceName&format=json&callback=?";
     var vsID =  $("#tooltip").attr("data-cts");
     $.getJSON(url.replace("${valueSetName}", vsID), function(cts2JSON) {
         var html = getValueSetTableInfo(cts2JSON);

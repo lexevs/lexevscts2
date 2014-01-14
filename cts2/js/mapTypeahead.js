@@ -9,7 +9,7 @@ $('.example-maps .typeahead').typeahead({
     name: 'maps',
     valueKey: 'formalName',
     remote: {
-        url : 'http://bmidev4:5555/cts2/mapversions?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
+        url : 'http://lexevscts2-stage.nci.nih.gov/lexevscts2/mapversions?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
         filter: function (data) {
             var maps =  data.mapVersionDirectory.entryList;
             return maps

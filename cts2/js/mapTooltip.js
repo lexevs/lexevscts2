@@ -6,7 +6,7 @@
  */
 
 $(document).ready(function(){
-    var url = "http://bmidev4:5555/cts2/mapversions?matchvalue=${mapName}&filtercomponent=resourceName&format=json&callback=?";
+    var url = "http://lexevscts2-stage.nci.nih.gov/lexevscts2/mapversions?matchvalue=${mapName}&filtercomponent=resourceName&format=json&callback=?";
     var mID =  $("#tooltip").attr("data-cts");
     $.getJSON(url.replace("${mapName}", mID), function(cts2JSON) {
         var html = getMapTableInfo(cts2JSON);
