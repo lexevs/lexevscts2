@@ -5,7 +5,7 @@
  * Time: 9:23 AM
  */
 $(document).ready(function(){
-    var url = "http://bmidev4:5555/cts2/codesystemversions?matchvalue=${codeSystemName}&filtercomponent=resourceName&format=json&callback=?";
+    var url = "http://lexevscts2-stage.nci.nih.gov/lexevscts2//codesystemversions?matchvalue=${codeSystemName}&filtercomponent=resourceName&format=json&callback=?";
     var csID =  $("#tooltip").attr("data-cts");
     $.getJSON(url.replace("${codeSystemName}", csID), function(cts2JSON) {
         var html = getCodeSystemTableInfo(cts2JSON)

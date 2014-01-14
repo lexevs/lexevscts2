@@ -6,7 +6,7 @@
  */
     $(function() {
 
-            var url = "http://lexevscts2-stage.nci.nih.gov/codesystemversions?format=json";
+            var url = "http://lexevscts2-stage.nci.nih.gov/lexevscts2/codesystemversions?format=json";
             $.getJSON(url + "&callback=?", function (data) {
                 for (var i in data.codeSystemVersionCatalogEntryDirectory.entryList) {
                     var entry = data.codeSystemVersionCatalogEntryDirectory.entryList[i];

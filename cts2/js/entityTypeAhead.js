@@ -8,7 +8,7 @@ $('.example-entities .typeahead').typeahead({
     name: 'entities',
     valueKey: 'designation',
     remote: {
-        url : 'http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.10a/entities?matchvalue=%QUERY&format=json&callback=?',
+        url : 'http://lexevscts2-stage.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/version/13.10b/entities?matchvalue=%QUERY&format=json&callback=?',
         filter: function (data) {
             var entryList =  data.entityDirectory.entryList;
             var entities = [];
