@@ -9,7 +9,7 @@
         name: 'valuesets',
         valueKey: 'content',
         remote: {
-            url : 'http://bmidev4:5555/cts2/resolvedvaluesets?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
+            url : 'http://lexevscts2.nci.nih.gov/lexevscts2/resolvedvaluesets?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
             filter: function (data) {
                 var values = [];
                 var valueSets =  data.resolvedValueSetDirectory.entryList;

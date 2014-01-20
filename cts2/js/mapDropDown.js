@@ -5,7 +5,7 @@
  * Time: 3:34 PM
  */
 $(function() {
-        var url = "http://bmidev4:5555/cts2/mapversions?format=json";
+        var url = "http://lexevscts2.nci.nih.gov/lexevscts2/mapversions?format=json";
         $.getJSON(url + "&callback=?", function (data) {
             for (var i in data.mapVersionDirectory.entryList) {
                 var entry = data.mapVersionDirectory.entryList[i];

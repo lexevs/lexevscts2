@@ -6,7 +6,7 @@
  */
 
 $(function() {
-        var vsurl =  "http://bmidev4:5555/cts2/resolvedvaluesets?format=json";
+        var vsurl =  "http://lexevscts2.nci.nih.gov/lexevscts2/resolvedvaluesets?format=json";
         $.getJSON(vsurl + "&callback=?", function (vsdata) {
             for (var i in vsdata.resolvedValueSetDirectory.entryList) {
                 var entry = vsdata.resolvedValueSetDirectory.entryList[i];
