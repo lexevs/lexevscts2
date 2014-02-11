@@ -11,7 +11,7 @@ $('.example-maps .typeahead').typeahead({
     remote: {
         url : 'http://bmidev4:5555/cts2/mapversions?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
         filter: function (data) {
-            var maps =  data.mapVersionDirectory.entryList;
+            var maps =  data.MapVersionDirectory.entry;
             return maps
         }
     },

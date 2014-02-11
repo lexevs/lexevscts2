@@ -16,9 +16,9 @@ $(document).ready(function(){
     function getCodeSystemTableInfo(codeSystemJson) {
         // get the description, current version, and code system name from the jsonp object
         // variable path elements represent the path into the json element structure
-        var entryList = codeSystemJson.codeSystemVersionCatalogEntryDirectory.entryList;
+        var entryList = codeSystemJson.CodeSystemVersionCatalogEntryDirectory.entry;
         for(i in entryList){
-           var entry =     codeSystemJson.codeSystemVersionCatalogEntryDirectory.entryList[i];
+           var entry =     codeSystemJson.CodeSystemVersionCatalogEntryDirectory.entry[i];
            var codeSystemName =  entry.codeSystemVersionName;
            var currentVersion = entry.officialResourceVersionId;
            var description = entry.resourceSynopsis.value;

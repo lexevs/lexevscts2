@@ -8,8 +8,8 @@
 
             var url = "http://bmidev4:5555/cts2/codesystemversions?format=json";
             $.getJSON(url + "&callback=?", function (data) {
-                for (var i in data.codeSystemVersionCatalogEntryDirectory.entryList) {
-                    var entry = data.codeSystemVersionCatalogEntryDirectory.entryList[i];
+                for (var i in data.CodeSystemVersionCatalogEntryDirectory.entry) {
+                    var entry = data.CodeSystemVersionCatalogEntryDirectory.entry[i];
                     var name = entry.formalName;
                     var designation = entry.documentURI;
                     var uri = entry.href;

@@ -27,11 +27,11 @@ $(document).ready(function(){
             });
 
     function getHTML(mapJson){
-        var map = mapJson.mapEntryMsg.entry.assertedBy.map.content;
-        var fromName = mapJson.mapEntryMsg.entry.mapFrom.name;
-        var fromNamespace = mapJson.mapEntryMsg.entry.mapFrom.namespace;
-        var mapsetList =  mapJson.mapEntryMsg.entry.mapSetList;
-        var maptargetList =  mapsetList[0].mapTargetList;
+        var map = mapJson.MapEntryMsg.entry.assertedBy.map.content;
+        var fromName = mapJson.MapEntryMsg.entry.mapFrom.name;
+        var fromNamespace = mapJson.MapEntryMsg.entry.mapFrom.namespace;
+        var mapsetList =  mapJson.MapEntryMsg.entry.mapSet;
+        var maptargetList =  mapsetList[0].mapTarget;
         var toName = maptargetList[0].mapTo.name;
         var toNamespace = maptargetList[0].mapTo.namespace;
         var html =

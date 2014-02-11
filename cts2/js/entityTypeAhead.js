@@ -10,10 +10,10 @@ $('.example-entities .typeahead').typeahead({
     remote: {
         url : 'http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.10a/entities?matchvalue=%QUERY&format=json&callback=?',
         filter: function (data) {
-            var entryList =  data.entityDirectory.entryList;
+            var entryList =  data.EntityDirectory.entry;
             var entities = [];
             for(i in entryList){
-                entities.push(entryList[i].knownEntityDescriptionList[0].designation); //Only shows the first entity description
+                entities.push(entryList[i].knownEntityDescription[0].designation); //Only shows the first entity description
             }
             return entities;
         },

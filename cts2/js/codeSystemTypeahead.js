@@ -11,7 +11,7 @@ $('.example-codesystems .typeahead').typeahead({
     remote: {
         url : 'http://bmidev4:5555/cts2/codesystemversions?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
         filter: function (data) {
-            var codeSystems =  data.codeSystemVersionCatalogEntryDirectory.entryList;
+            var codeSystems =  data.CodeSystemVersionCatalogEntryDirectory.entry;
             return codeSystems;
         }
     },

@@ -122,9 +122,9 @@ $('.example-valuesets .typeahead').typeahead({
         url : 'http://bmidev4:5555/cts2/resolvedvaluesets?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
         filter: function (data) {
             var values = []
-            var valueSets =  data.resolvedValueSetDirectory.entryList;
+            var valueSets =  data.ResolvedValueSetDirectory.entry;
             for(i in valueSets){
-                var entry = data.resolvedValueSetDirectory.entryList[i].resolvedHeader.resolutionOf.valueSet.content;
+                var entry = data.ResolvedValueSetDirectory.entry[i].resolvedHeader.resolutionOf.valueSet.content;
             values.push(entry)
             }
             return values;
@@ -207,9 +207,9 @@ $(document).ready(function(){
 
     function getValueSetTableInfo(valueSetJson) {
         // get the description, URI, and value set name
-        var entryList = valueSetJson.resolvedValueSetDirectory.entryList;
+        var entryList = valueSetJson.ResolvedValueSetDirectory.entry;
         for(i in entryList){
-            var entry =     valueSetJson.resolvedValueSetDirectory.entryList[i];
+            var entry =     valueSetJson.ResolvedValueSetDirectory.entry[i];
             var valueSetName =  entry.resolvedHeader.resolutionOf.valueSet.content;
             var URI = entry.resolvedValueSetURI;
             var description = entry.resolvedHeader.resolutionOf.valueSetDefinition.content;
@@ -310,8 +310,8 @@ $(document).ready(function(){
 $(function() {
     var vsurl = "http://bmidev4:5555/cts2/resolvedvaluesets?format=json";
     $.getJSON(vsurl + "&callback=?", function (vsdata) {
-        for (var i in vsdata.resolvedValueSetDirectory.entryList) {
-        var entry = vsdata.resolvedValueSetDirectory.entryList[i];
+        for (var i in vsdata.ResolvedValueSetDirectory.entry) {
+        var entry = vsdata.ResolvedValueSetDirectory.entry[i];
         var name = entry.resolvedHeader.resolutionOf.valueSet.content;
         $("ul.dropdown-menu#valuesets").append("&lt;li&gt;&lt;a href=&quot;#&quot;&gt;" + name +
                                "&lt;/a&gt;&lt;/li&gt;");
@@ -411,8 +411,8 @@ $(document).ready(
     var url = resValueSetListConfig.serviceUrl;
     var encodedUrl = encodeURI(url);
     $.getJSON(encodedUrl + "&callback=?", function (data) {
-        or (var i in data.iteratableResolvedValueSet.entryList) {
-        var entry = data.iteratableResolvedValueSet.entryList[i];
+        or (var i in data.IteratableResolvedValueSet.entry) {
+        var entry = data.IteratableResolvedValueSet.entry[i];
         var name = entry.designation;
         $("ul.dropdown-menu#resolved").append("&lt;li&gt;&lt;a href=&quot;#&quot;&gt;" + name + "&lt;/a&gt;&lt;/li&gt;");
         }

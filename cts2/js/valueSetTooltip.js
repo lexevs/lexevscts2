@@ -15,9 +15,9 @@ $(document).ready(function(){
 
     function getValueSetTableInfo(valueSetJson) {
         // get the description, current version, and code system name
-        var entryList = valueSetJson.resolvedValueSetDirectory.entryList;
+        var entryList = valueSetJson.ResolvedValueSetDirectory.entry;
         for(i in entryList){
-            var entry =     valueSetJson.resolvedValueSetDirectory.entryList[i];
+            var entry =     valueSetJson.ResolvedValueSetDirectory.entry[i];
             var valueSetName =  entry.resolvedHeader.resolutionOf.valueSet.content;
             var URI = entry.resolvedValueSetURI;
             var description = entry.resolvedHeader.resolutionOf.valueSetDefinition.content;

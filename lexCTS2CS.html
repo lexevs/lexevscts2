@@ -129,7 +129,7 @@ $('.example-codesystems .typeahead').typeahead({
         url : 'http://bmidev4:5555/cts2/codesystemversions?matchvalue=%QUERY
         &filtercomponent=resourceName&format=json&callback=?',
         filter: function (data) {
-        var codeSystems =  data.codeSystemVersionCatalogEntryDirectory.entryList;
+        var codeSystems =  data.CodeSystemVersionCatalogEntryDirectory.entry;
         return codeSystems;
             }
     },
@@ -208,9 +208,9 @@ $.getJSON(url.replace("${codeSystemName}", csID), function(cts2JSON) {
 
 function getCodeSystemTableInfo(codeSystemJson) {
 // get the description, current version, and code system name
-    var entryList = codeSystemJson.codeSystemVersionCatalogEntryDirectory.entryList;
-    for(i in entryList){
-    var entry =     codeSystemJson.codeSystemVersionCatalogEntryDirectory.entryList[i];
+    var entry = codeSystemJson.CodeSystemVersionCatalogEntryDirectory.entry;
+    for(i in entry){
+    var entry =     codeSystemJson.CodeSystemVersionCatalogEntryDirectory.entry[i];
     var codeSystemName =  entry.codeSystemVersionName;
     var currentVersion = entry.officialResourceVersionId;
     var description = entry.resourceSynopsis.value;
@@ -310,11 +310,11 @@ $('.example-entities .typeahead').typeahead({
     remote: {
         url : 'http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.10a/entities?matchvalue=%QUERY&format=json&callback=?',
         filter: function (data) {
-            var entryList =  data.entityDirectory.entryList;
+            var entryList =  data.EntityDirectory.entry;
             var entities = [];
             for(i in entryList){
             //Only shows the first entity description
-            entities.push(entryList[i].knownEntityDescriptionList[0].designation);
+            entities.push(entry[i].knownEntityDescription[0].designation);
             }
     return entities;
     },
@@ -406,8 +406,8 @@ $(document).ready(
     function() {
         var url = CodeSystemListConfig.serviceUrl;
         $.getJSON(url + "&callback=?", function (data) {
-            for (var i in data.codeSystemVersionCatalogEntryDirectory.entryList) {
-            var entry = data.codeSystemVersionCatalogEntryDirectory.entryList[i];
+            for (var i in data.CodeSystemVersionCatalogEntryDirectory.entry) {
+            var entry = data.CodeSystemVersionCatalogEntryDirectory.entry[i];
             var name = entry.formalName;
             var designation = entry.documentURI;
             var uri = entry.href;
@@ -508,8 +508,8 @@ $(document).ready(
                             <code>
 function buildTreeInit(genURL){
     $.getJSON(genURL + "?format=json&callback=?", function(data){
-        var rootName = data.entityDescriptionMsg.entityDescription.namedEntity.designationList[0].value;
-        var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
+        var rootName = data.EntityDescriptionMsg.entityDescription.namedEntity.designation[0].value;
+        var childUrl = data.EntityDescriptionMsg.entityDescription.namedEntity.children;
         populateRoot(rootName);
         $.when(addChildData(childUrl,"a#label-root")).then(buildLevelOne());
     });
@@ -531,11 +531,11 @@ function buildTreeInit(genURL){
                             <code>
 function getChildren(dataRef){
     $.getJSON(dataRef + "?format=json&callback=?", function(childData){
-        var childList = childData.entityDirectory.entryList;
+        var childList = childData.EntityDirectory.entry;
         var html = "&lt;ul id=&quot;level1&quot; &gt;";
         for (var i in childList) {
-            var name = childList[i].knownEntityDescriptionList[0].designation;
-            var ref = childList[i].knownEntityDescriptionList[0].href;
+            var name = childList[i].knownEntityDescription[0].designation;
+            var ref = childList[i].knownEntityDescription[0].href;
             var icon = "&lt;span&gt;" +
             "&lt;i class=&quot;glyphicon glyphicon-plus-sign&quot;&gt;&lt;/i&gt;&lt;/span&gt;";
             html = html +"&lt;li&gt;" +
@@ -558,13 +558,13 @@ function getChildren(dataRef){
 
 function buildTree(dataRef, id, index){
     $.getJSON(dataRef + "?format=json&callback=?", function(data){
-    var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
+    var childUrl = data.EntityDescriptionMsg.entityDescription.namedEntity.children;
         $.getJSON(childUrl + "?format=json&callback=?", function(childData){
-            var childList = childData.entityDirectory.entryList;
+            var childList = childData.EntityDirectory.entry;
             var html=  "&lt;ul id=&quot;level2&quot; data-li_index='" + index + "' class=&quot;tree&quot; &gt;";
             for (var i in childList) {
-                var name = childList[i].knownEntityDescriptionList[0].designation;
-                var ref = childList[i].knownEntityDescriptionList[0].href;
+                var name = childList[i].knownEntityDescription[0].designation;
+                var ref = childList[i].knownEntityDescription[0].href;
                 html= html +  "&lt;li&gt;&lt;a id=&quot;level2&quot; data-cts2ref='" + ref +
                 "' label-default=&quot;&quot;  &gt;"
                 + name + "&lt;/a&gt;&lt;/li&gt;";

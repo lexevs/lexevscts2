@@ -134,11 +134,11 @@
                                 <code>
 var url = "http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.07e/entities?maxtoreturn=5&format=json&callback=?";
 $.getJSON(url, function(cts2JSON) {
-    nextURL = cts2JSON.entityDirectory.next;
-    for(i in cts2JSON.entityDirectory.entryList){
-        var entity = cts2JSON.entityDirectory.entryList[i];
+    nextURL = cts2JSON.EntityDirectory.next;
+    for(i in cts2JSON.EntityDirectory.entry){
+        var entity = cts2JSON.EntityDirectory.entry[i];
         var code = entity.name.name;
-        var name = entity.knownEntityDescriptionList[0].designation;
+        var name = entity.knownEntityDescription[0].designation;
         if(name == null) {
             name = "MISSING"
         }
@@ -157,12 +157,12 @@ to the next set of entries
 $("div.btn-group button.cts2next").on("click", function(){
     $.when($("div.show_hide").html("&lt;ul class=&quot;list-group&quot;&gt;&lt;/ul&gt;")).then(
     $.getJSON(nextURL + "&callback=?", function(cts2Next) {
-        nextURL = cts2Next.entityDirectory.next;
-        previousURL = cts2Next.entityDirectory.prev ;
-        for(i in cts2Next.entityDirectory.entryList){
-            var entity = cts2Next.entityDirectory.entryList[i];
+        nextURL = cts2Next.EntityDirectory.next;
+        previousURL = cts2Next.EntityDirectory.prev ;
+        for(i in cts2Next.EntityDirectory.entry){
+            var entity = cts2Next.EntityDirectory.entry[i];
             var code = entity.name.name;
-            var name = entity.knownEntityDescriptionList[0].designation;
+            var name = entity.knownEntityDescription[0].designation;
             if(name == null) {
                 name = "MISSING"
             }
@@ -184,12 +184,12 @@ previous set of entries at this time.
 $("div.btn-group button.cts2prev").on("click", function(){
     $.when($("div.show_hide").html("&lt;ul class=&quot;list-group&quot;&gt;&lt;/ul&gt;")).then(
     $.getJSON(previousURL + "&callback=?", function(cts2Next) {
-    nextURL = cts2Next.entityDirectory.next;
-    previousURL = cts2Next.entityDirectory.prev ;
-    for(i in cts2Next.entityDirectory.entryList){
-        var entity = cts2Next.entityDirectory.entryList[i];
+    nextURL = cts2Next.EntityDirectory.next;
+    previousURL = cts2Next.EntityDirectory.prev ;
+    for(i in cts2Next.EntityDirectory.entry){
+        var entity = cts2Next.EntityDirectory.entry[i];
         var code = entity.name.name;
-        var name = entity.knownEntityDescriptionList[0].designation;
+        var name = entity.knownEntityDescription[0].designation;
         if(name == null) {
             name = "MISSING"
         }

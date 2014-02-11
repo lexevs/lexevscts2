@@ -12,8 +12,8 @@ var treeUrl = "http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.10a/
 //initialise the root by making a call to the rest service
 function buildTreeInit(genURL){
     $.getJSON(genURL + "?format=json&callback=?", function(data){
-        var rootName = data.entityDescriptionMsg.entityDescription.namedEntity.designationList[0].value;
-        var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
+        var rootName = data.EntityDescriptionMsg.entityDescription.namedEntity.designation[0].value;
+        var childUrl = data.EntityDescriptionMsg.entityDescription.namedEntity.children;
         populateRoot(rootName);
         $.when(addChildData(childUrl,"a#label-root")).then(buildLevelOne());
     });
@@ -37,11 +37,11 @@ function buildLevelOne() {
 //Get the children of this root, format them in html and attach them to a list item with id of "root"
 function getChildren(dataRef){
     $.getJSON(dataRef + "?format=json&callback=?", function(childData){
-        var childList = childData.entityDirectory.entryList;
+        var childList = childData.EntityDirectory.entry;
         var html = "<ul id=\"level1\"  >";
         for (var i in childList) {
-            var name = childList[i].knownEntityDescriptionList[0].designation;
-            var ref = childList[i].knownEntityDescriptionList[0].href;
+            var name = childList[i].knownEntityDescription[0].designation;
+            var ref = childList[i].knownEntityDescription[0].href;
             var icon = "<span>" +
                 "<i class=\"glyphicon glyphicon-plus-sign\"></i></span>";
             html = html +"<li>" +
@@ -76,14 +76,14 @@ function buildLevelTwo(){
 //Get the children of the root's child
 function buildTree(dataRef, id, index){
     $.getJSON(dataRef + "?format=json&callback=?", function(data){
-        var childUrl = data.entityDescriptionMsg.entityDescription.namedEntity.children;
+        var childUrl = data.EntityDescriptionMsg.entityDescription.namedEntity.children;
 
         $.getJSON(childUrl + "?format=json&callback=?", function(childData){
-            var childList = childData.entityDirectory.entryList;
+            var childList = childData.EntityDirectory.entry;
             var html=  "<ul id=\"level2\" data-li_index='" + index + "' class=\"tree\" >";
             for (var i in childList) {
-                var name = childList[i].knownEntityDescriptionList[0].designation;
-                var ref = childList[i].knownEntityDescriptionList[0].href;
+                var name = childList[i].knownEntityDescription[0].designation;
+                var ref = childList[i].knownEntityDescription[0].href;
                 html= html +  "<li><a id=\"level2\" data-cts2ref='" + ref +
                     "' label-default=\"\"  >"
                     + name + "</a></li>";

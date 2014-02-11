@@ -12,9 +12,9 @@
             url : 'http://bmidev4:5555/cts2/resolvedvaluesets?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
             filter: function (data) {
                 var values = [];
-                var valueSets =  data.resolvedValueSetDirectory.entryList;
+                var valueSets =  data.ResolvedValueSetDirectory.entry;
                 for(i in valueSets){
-                             var entry = data.resolvedValueSetDirectory.entryList[i].resolvedHeader.resolutionOf.valueSet.content;
+                             var entry = data.ResolvedValueSetDirectory.entry[i].resolvedHeader.resolutionOf.valueSet.content;
                              values.push(entry)
                 }
                 return values;

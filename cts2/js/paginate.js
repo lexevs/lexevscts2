@@ -10,7 +10,7 @@ $(document).ready(function(){
 //  Build the list of the first five entities with a REST call
     var url = "http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.07e/entities?maxtoreturn=5&format=json&callback=?";
     $.getJSON(url, function(cts2JSON) {
-       nextURL = cts2JSON.entityDirectory.next;
+       nextURL = cts2JSON.EntityDirectory.next;
        buildHtml(cts2JSON);
     });
 //  Add a listener to the next button and get the next 5 when clicked
@@ -27,10 +27,10 @@ $(document).ready(function(){
     });
 //  Create the list of 5 entities and show them
     function buildHtml(data){
-        for(i in data.entityDirectory.entryList){
-            var entity = data.entityDirectory.entryList[i];
+        for(i in data.EntityDirectory.entry){
+            var entity = data.EntityDirectory.entry[i];
             var code = entity.name.name;
-            var name = entity.knownEntityDescriptionList[0].designation;
+            var name = entity.knownEntityDescription[0].designation;
             if(name == null) {
                 name = "MISSING"
             }
@@ -40,8 +40,8 @@ $(document).ready(function(){
 //  Make a REST call to get the previous or next 5 entities from the server
     function getNextPrev(givenURL){
         $.getJSON(givenURL + "&callback=?", function(cts2Next) {
-            nextURL = cts2Next.entityDirectory.next;
-            previousURL = cts2Next.entityDirectory.prev ;
+            nextURL = cts2Next.EntityDirectory.next;
+            previousURL = cts2Next.EntityDirectory.prev ;
             buildHtml(cts2Next);
         })
     }

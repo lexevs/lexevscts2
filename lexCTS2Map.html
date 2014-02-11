@@ -126,7 +126,7 @@ $('.example-maps .typeahead').typeahead({
     remote: {
         url : 'http://bmidev4:5555/cts2/mapversions?matchvalue=%QUERY&filtercomponent=resourceName&format=json&callback=?',
         filter: function (data) {
-            var maps =  data.mapVersionDirectory.entryList;
+            var maps =  data.MapVersionDirectory.entry;
             return maps
         }
     },
@@ -209,9 +209,9 @@ $(document).ready(function(){
     });
 
     function getMapTableInfo(mapJson) {I
-        var entryList = mapJson.mapVersionDirectory.entryList;
+        var entryList = mapJson.MapVersionDirectory.entry;
         for(i in entryList){
-            var entry =     mapJson.mapVersionDirectory.entryList[i];
+            var entry =     mapJson.MapVersionDirectory.entry[i];
             var mapName =  entry.formalName;
             var version = entry.mapVersionName;
             var URI = entry.documentURI;
@@ -319,8 +319,8 @@ $(document).ready(
     function() {
     var url = CodeSystemListConfig.serviceUrl;
     $.getJSON(url + "&callback=?", function (data) {
-        for (var i in data.mapVersionDirectory.entryList) {
-            var entry = data.mapVersionDirectory.entryList[i];
+        for (var i in data.MapVersionDirectory.entry) {
+            var entry = data.MapVersionDirectory.entry[i];
             var name = entry.formalName;
             $("ul.dropdown-menu").append("&lt;li&gt;&lt;a href=&quot;#&quot;&gt;" + name + "&lt;/a&gt;&lt;/li&gt;");
         }
@@ -434,13 +434,13 @@ $('#entity-btn').click(function(event) {
                     <pre>
                         <code>
 function getHTML(mapJson){
-    var map = mapJson.mapEntryMsg.entry.assertedBy.map.content;
-    var fromName = mapJson.mapEntryMsg.entry.mapFrom.name;
-    var fromNamespace = mapJson.mapEntryMsg.entry.mapFrom.namespace;
-    var mapsetList =  mapJson.mapEntryMsg.entry.mapSetList;
-    var maptargetList =  mapsetList[0].mapTargetList;
-    var toName = maptargetList[0].mapTo.name;
-    var toNamespace = maptargetList[0].mapTo.namespace;
+    var map = mapJson.MapEntryMsg.entry.assertedBy.map.content;
+    var fromName = mapJson.MapEntryMsg.entry.mapFrom.name;
+    var fromNamespace = mapJson.MapEntryMsg.entry.mapFrom.namespace;
+    var mapsetList =  mapJson.MapEntryMsg.entry.mapSet;
+    var maptargetList =  mapset[0].mapTarget;
+    var toName = maptarget[0].mapTo.name;
+    var toNamespace = maptarget[0].mapTo.namespace;
     var html =
         "&lt;div class=&quot;alert&quot;&gt;" +
         "&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-hidden=&quot;true&quot;&gt;×&lt;/button&gt;" +

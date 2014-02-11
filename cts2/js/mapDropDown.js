@@ -7,8 +7,8 @@
 $(function() {
         var url = "http://bmidev4:5555/cts2/mapversions?format=json";
         $.getJSON(url + "&callback=?", function (data) {
-            for (var i in data.mapVersionDirectory.entryList) {
-                var entry = data.mapVersionDirectory.entryList[i];
+            for (var i in data.MapVersionDirectory.entry) {
+                var entry = data.MapVersionDirectory.entry[i];
                 var name = entry.formalName;
                 $("ul.dropdown-menu").append("<li><a href=\"#\">" + name + "</a></li>");
             }

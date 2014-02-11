@@ -8,8 +8,8 @@
 $(function() {
         var vsurl =  "http://bmidev4:5555/cts2/resolvedvaluesets?format=json";
         $.getJSON(vsurl + "&callback=?", function (vsdata) {
-            for (var i in vsdata.resolvedValueSetDirectory.entryList) {
-                var entry = vsdata.resolvedValueSetDirectory.entryList[i];
+            for (var i in vsdata.ResolvedValueSetDirectory.entry) {
+                var entry = vsdata.ResolvedValueSetDirectory.entry[i];
                 var name = entry.resolvedHeader.resolutionOf.valueSet.content;
                 $("ul.dropdown-menu#valuesets").append("<li><a href=\"#\">" + name + "</a></li>");
             }

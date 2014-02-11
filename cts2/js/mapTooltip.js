@@ -15,9 +15,9 @@ $(document).ready(function(){
 
     function getMapTableInfo(mapJson) {
         // get the name, current version, and URI
-        var entryList = mapJson.mapVersionDirectory.entryList;
+        var entryList = mapJson.MapVersionDirectory.entry;
         for(i in entryList){
-            var entry =     mapJson.mapVersionDirectory.entryList[i];
+            var entry =     mapJson.MapVersionDirectory.entry[i];
             var mapName =  entry.formalName;
             var version = entry.mapVersionName;
             var URI = entry.documentURI;
