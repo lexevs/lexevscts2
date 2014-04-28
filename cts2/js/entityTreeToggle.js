@@ -7,7 +7,7 @@
 
 
 // define the url of the root node
-var treeUrl = "http://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/version/10.10a/entity/C3399";
+var treeUrl = "http://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/version/14.01d/entity/C3399";
 
 //initialise the root by making a call to the rest service
 function buildTreeInit(genURL){

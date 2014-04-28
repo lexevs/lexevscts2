@@ -7,7 +7,7 @@
  */
 $(document).ready(function(){
 
-    var entityURL = "http://lexevscts2.nci.nih.gov/lexevscts2/map/NCIt_to_ICD9CM_Mapping/version/NCIt_to_ICD9CM_Mapping-1.0/entry/NCI_Thesaurus:${code}";
+    var entityURL = "http://lexevscts2.nci.nih.gov/lexevscts2/map/NCIt_to_ChEBI_Mapping/version/NCIt_to_ChEBI_Mapping-1.2/entry/NCI_Thesaurus:${code}";
 
             $('#entity-btn').button();
 

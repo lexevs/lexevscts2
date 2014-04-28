@@ -8,7 +8,7 @@ $(document).ready(function(){
     var nextURL;
     var previousURL;
 //  Build the list of the first five entities with a REST call
-    var url = "http://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/version/10.07e/entities?maxtoreturn=5&format=json&callback=?";
+    var url = "http://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/version/14.01d/entities?maxtoreturn=5&format=json&callback=?";
     $.getJSON(url, function(cts2JSON) {
        nextURL = cts2JSON.entityDirectory.next;
        buildHtml(cts2JSON);

@@ -158,7 +158,7 @@ $('.example-codesystems .typeahead').typeahead({
             <div class="well tree">
             <h2>Code System</h2>
             <p>Code system metadata tooltip displays code system metadata on cursor hover</p>
-            <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="NCI_Thesaurus-10.07e">NCI Thesaurus</a>
+            <a href="#" data-toggle="tooltip"  id="tooltip" data-cts="NCI_Thesaurus-14.01d">NCI Thesaurus</a>
             <div style="padding-top: 75px">
                 <p><a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#csToolTipModal">Get Code &raquo;</a></p>
             </div>
@@ -185,7 +185,7 @@ $('.example-codesystems .typeahead').typeahead({
                                 <code>
 &lt;div class=&quot;col-lg-6&quot;&gt;
 &lt;a href=&quot;#&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;tooltip&quot;  id=&quot;tooltip&quot;
-                                data-cts=&quot;NCI_Thesaurus-10.07e&quot;&gt;NCI Thesaurus&lt;/a&gt;
+                                data-cts=&quot;NCI_Thesaurus-14.01d&quot;&gt;NCI Thesaurus&lt;/a&gt;
 &lt;/div&gt;
                                 </code>
                             </pre>
@@ -308,7 +308,7 @@ $('.example-entities .typeahead').typeahead({
     name: 'entities',
     valueKey: 'designation',
     remote: {
-        url : 'http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/10.10a/entities?matchvalue=%QUERY&format=json&callback=?',
+        url : 'http://bmidev4:5555/cts2/codesystem/NCI_Thesaurus/version/14.01d/entities?matchvalue=%QUERY&format=json&callback=?',
         filter: function (data) {
             var entryList =  data.entityDirectory.entryList;
             var entities = [];
